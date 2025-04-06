@@ -11,61 +11,28 @@
 
 <custom-marker id="custom-marker-element" style="display: none">
     <!-- Custom marker content -->
-    <img src="0.jpeg" />
+    <img src="/DEPSTAR/img/1.jpg" />
     <h2>Custom Marker</h2>
     <p>This is a custom marker for the virtual tour.</p>
 </custom-marker>
 
-<custom-marker id="custom-marker-element-for-electronics" style="display: none">
+<custom-marker id="custom-marker-element" style="display: none">
     <!-- Custom marker content -->
-    <img src="0.jpeg" />
-    <h2>Electronics Store</h2>
-    <p>Explore the latest in electronics including smartphones, laptops, and home appliances.</p>
+    <img src="/DEPSTAR/img/1.jpg" />
+    <h2>Custom Marker</h2>
+    <p>This is a custom marker for the virtual tour.</p>
 </custom-marker>
 
-<custom-marker id="custom-marker-element-for-clothing" style="display: none">
-    <!-- Custom marker content -->
-    <img src="0.jpeg" />
-    <h2>Clothing Store</h2>
-    <p>Discover the newest trends in fashion with a wide range of clothing for all occasions.</p>
-</custom-marker>
+<head>
+    <!-- for optimal display on high DPI devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/core@5/index.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/markers-plugin@5/index.css" />
+    <link rel="stylesheet" href="style.css" />
+</head>
 
-<custom-marker id="custom-marker-element-for-shoes" style="display: none">
-    <!-- Custom marker content -->
-    <img src="0.jpeg" />
-    <h2>Shoe Store</h2>
-    <p>Step into our shoe store to find the perfect pair for any outfit, from casual to formal.</p>
-</custom-marker>
-
-<coustom-marker id="custom-marker-element-for-product-1" style="display: none;">
-    <img src="0.jpeg" />
-        <h2>Samsung Galaxy TAB S6</h2>
-        <p>The Samsung Galaxy Tab S6, released in August 2019, features a 10.5-inch Super AMOLED display with a resolution of 2560 x 1600 pixels. It is powered by the Qualcomm Snapdragon 855 processor, with options for 6 GB or 8 GB of RAM and 128 GB or 256 GB of storage, expandable via microSD. The tablet includes a dual rear camera setup (13 MP + 5 MP), an 8 MP front camera, and a 7040 mAh battery with fast charging. Key features include the S Pen, DeX mode for a desktop-like experience, quad speakers tuned by AKG, and an in-display fingerprint scanner. It runs on Android with Samsung's One UI.</p>
-        <a href="https://amzn.in/d/1vqujtk">
-            <img src="https://m.media-amazon.com/images/I/31qVIrbLqJL._SY300_SX300_QL70_FMwebp_.jpg" />
-        </a>
-</custom-marker>
-
-<custom-marker id="custom-marker-element-for-restaurant" style="display: none">
-    <!-- Custom marker content -->
-    <img src="0.jpeg" />
-    <h2>Restaurant</h2>
-    <p>Dine at our restaurant and enjoy a variety of delicious dishes, from appetizers to desserts.</p>
-</custom-marker>
-
-<custom-marker id="custom-marker-element-for-salon" style="display: none">
-    <!-- Custom marker content -->
-    <img src="0.jpeg" />
-    <h2>Salon</h2>
-    <p>Pamper yourself at our salon with a range of beauty services including haircuts, manicures, and facials.</p>
-</custom-marker>
-
-<custom-marker id="custom-marker-element-for-general-store" style="display: none">
-    <!-- Custom marker content -->
-    <img src="0.jpeg" />
-    <h2>General Store</h2>
-    <p>Find everything you need at our general store, from groceries to household items.</p>
-</custom-marker>
+<!-- the viewer container must have a defined size -->
+<div id="viewer" style="width: 100vw; height: 100vh;"></div>
 
 <script type="importmap">
     {
@@ -80,9 +47,22 @@
 </script>
 
 <script type="module">
+    
     import { Viewer } from '@photo-sphere-viewer/core';
     import { VirtualTourPlugin } from '@photo-sphere-viewer/virtual-tour-plugin';
     import { MarkersPlugin } from '@photo-sphere-viewer/markers-plugin';
+
+    const baseUrl = 'https://photo-sphere-viewer-data.netlify.app/assets/';
+    const caption = 'Cape Florida Light, Key Biscayne <b>&copy; Pixexid</b>';
+
+    const markerLighthouse = {
+        id: 'marker-1',
+        image: baseUrl + 'pictos/pin-red.png',
+        tooltip: 'Cape Florida Light, Key Biscayne',
+        size: { width: 32, height: 32 },
+        anchor: 'bottom center',
+        gps: [-80.155973, 25.666601, 29 + 3],
+    };
 
     // Declare the custom marker element
     class CustomMarkerElement extends HTMLElement {
@@ -228,7 +208,8 @@ viewerSize: ${viewerSize.width}px x ${viewerSize.height}px
 
     const viewer = new Viewer({
         container: document.querySelector('#viewer'),
-        panorama: 'electronic.jpg',
+        panorama: '/DEPSTAR/img/1.jpg',
+        loadingImg: baseUrl + 'loading.svg',
         touchmoveTwoFingers: true,
         defaultYaw: '1deg',
         plugins: [
@@ -250,212 +231,646 @@ viewerSize: ${viewerSize.width}px x ${viewerSize.height}px
     const virtualTour = viewer.getPlugin(VirtualTourPlugin);
 
     virtualTour.setNodes([
-    {
-                            id: '1',
-                            panorama: 'electronics.jpg',
-                            name: 'Electronics Store',
-                            links: [{ nodeId: '2' }],
-                            markers: [
-                                {
-                                    id: 'marker-1',
-                                    element: document.querySelector('#custom-marker-element-for-electronics'),
-                                    position: { yaw: -6.1, pitch: 0.12 },
-                                },
-                                {
-                                    id: 'product-1',
-                                    polygon: [
-                                        [0.596416174082061, -0.09412586265209733],
-                                        [0.6643120055120949, -0.16225545829868682],
-                                        [0.5974112353942319, -0.1626270065733766],
-                                        [0.6542901056941313, -0.09226165407034559]
-                                    ],
-                                    tooltip: 'Samsung Galaxy TAB S6',
-                                    style: {
-                                            fill: 'rgba(255, 0, 0, 0.5)',
-                                            stroke: 'rgba(255, 0, 0, 0.8)',
-                                            strokeWidth: '2px'
-                                        },
-                                        content: '<p>The Samsung Galaxy Tab S6, released in August 2019, features a 10.5-inch Super AMOLED display with a resolution of 2560 x 1600 pixels. It is powered by the Qualcomm Snapdragon 855 processor, with options for 6 GB or 8 GB of RAM and 128 GB or 256 GB of storage, expandable via microSD. The tablet includes a dual rear camera setup (13 MP + 5 MP), an 8 MP front camera, and a 7040 mAh battery with fast charging. Key features include the S Pen, DeX mode for a desktop-like experience, quad speakers tuned by AKG, and an in-display fingerprint scanner. It runs on Android with Samsung\'s One UI.</p> <a href="https://amzn.in/d/1vqujtk"> <img src="https://m.media-amazon.com/images/I/31qVIrbLqJL._SY300_SX300_QL70_FMwebp_.jpg"/></a>',
-                                },
-                                {
-                                    id: 'product-2',
-                                    polygon: [
-                                        [0.8474910944874396, -0.10059453817978925],
-                                        [0.8706522130673006, -0.16340304985283738],
-                                        [0.9267513366531773, -0.15440748526646098],
-                                        [0.899148818519856, -0.08620045439347246]
-                                    ],
-                                    tooltip: 'Samsung Galaxy Tab S9',
-                                    style: {
-                                        fill: 'rgba(255, 0, 0, 0.5)',
-                                        stroke: 'rgba(255, 0, 0, 0.8)',
-                                        strokeWidth: '2px'
-                                    },
-                                    content: '<p>The Samsung Galaxy Tab S9, released in August 2023, features a 12.4-inch Super AMOLED display with a resolution of 2800 x 1752 pixels. It is powered by the Qualcomm Snapdragon 8 Gen 2 processor, with options for 8 GB or 12 GB of RAM and 128 GB, 256 GB, or 512 GB of storage, expandable via microSD. The tablet includes a dual rear camera setup (13 MP + 8 MP), a 12 MP front camera, and a 10,090 mAh battery with fast charging. Key features include the S Pen, DeX mode for a desktop-like experience, quad speakers tuned by AKG, and an in-display fingerprint scanner. It runs on Android with Samsung\'s One UI.</p><a href="https://amzn.in/d/a6aollI"><img src="https://m.media-amazon.com/images/I/61N77XWqCKL._SL1500_.jpg"  width="300" height="200"/></a>',
-                                 },
-                                 {
-                                    id: 'product-3',
-                                    polygon: [
-                                        [6.146205544124711, -0.14803785161869554],
-                                        [6.188077516134648, -0.12826626333637248],
-                                        [6.242050102654759, -0.23232337758775579],
-                                        [0.004111174492660245, -0.20090234479453084]
-                                    ],
-                                    tooltip: 'Samsung Galaxy S23 Ultra',
-                                    style: {
-                                        fill: 'rgba(0, 0, 255, 0.5)',
-                                        stroke: 'rgba(0, 0, 255, 0.8)',
-                                        strokeWidth: '2px'
-                                    },
-                                    content: '<p>The Samsung Galaxy S23 Ultra, released in August 2023, features a 6.8-inch Super AMOLED display with a resolution of 3200 x 1440 pixels. It is powered by the Qualcomm Snapdragon 8 Gen 3 processor, with options for 12 GB or 16 GB of RAM and 256 GB, 512 GB, or 1 TB of storage, expandable via microSD. The smartphone includes a quad rear camera setup (108 MP + 12 MP + 12 MP + 12 MP), a 40 MP front camera, and a 5000 mAh battery with fast charging. Key features include the S Pen, One UI 5.1 for seamless integration, quad speakers tuned by AKG, and an in-display fingerprint scanner. It runs on Android with Samsung\'s latest software innovations.</p> <a href="https://www.samsung.com/in/smartphones/galaxy-s23-ultra/buy/" target="_blank"><img src="https://images.samsung.com/in/smartphones/galaxy-s23-ultra/buy/product_color_phantom_black.png?imwidth=480" width="300" height="200" alt="Samsung Galaxy S23 Ultra"/></a>',
-                                },
-                                {
-                                    id: 'product-4',
-                                    polygon: [
-                                        [5.8978464167178135, -0.21502897818864342],
-                                        [5.959779806189855, -0.1988995327288423],
-                                        [6.027973492459139, -0.2889892606398763],
-                                        [5.958644741758971, -0.3113837607029737]
-                                    ],
-                                    tooltip: 'Galaxy TAB A9',
-                                    style: {
-                                        fill: 'rgba(0, 0, 255, 0.5)',
-                                        stroke: 'rgba(0, 0, 255, 0.8)',
-                                        strokeWidth: '2px'
-                                    },
-                                    content: '<p>The Samsung Galaxy Tab A9, released in August 2023, features a 10.4-inch TFT display with a resolution of 2000 x 1200 pixels. It is powered by the Qualcomm Snapdragon 7c Gen 3 processor, with options for 4 GB or 6 GB of RAM and 64 GB or 128 GB of storage, expandable via microSD. The tablet includes an 8 MP rear camera, a 5 MP front camera, and a 7040 mAh battery. Key features include Samsung Kids, One UI 4.1 for intuitive navigation, and stereo speakers for immersive audio. It runs on Android with Samsung\'s latest enhancements.</p><a href="https://www.samsung.com/in/tablets/galaxy-tab-a9/buy/" target="_blank"><img src="https://images.samsung.com/is/image/samsung/assets/in/tablets/galaxy-tab-a9/buy/17903_Tab_A9_KV_1440x450.jpg?imbypass=true" width="300" height="200" alt="Samsung Galaxy Tab A9"/></a>',
-                                },
-                                {
-                                    id: 'product-5',
-                                    polygon: [
-                                        [5.542405724579342, -0.2189024831800861],
-                                        [5.537880369525789, -0.4040817805033603],
-                                        [5.6462012719362225, -0.4001214550871379],
-                                        [5.641046168188423, -0.2256394298289104]
-                                    ],
-                                    tooltip: 'Click here for more information',
-                                    style: {
-                                        fill: 'rgba(0, 0, 255, 0.5)',
-                                        stroke: 'rgba(0, 0, 255, 0.8)',
-                                        strokeWidth: '2px'
-                                    },
-                                    content: '<p>The Samsung Galaxy Tab S9 FE, released in August 2023, features a 12.4-inch Super AMOLED display with a resolution of 2800 x 1752 pixels. It is powered by the Qualcomm Snapdragon 8 Gen 2 processor, with options for 8 GB or 12 GB of RAM and 128 GB, 256 GB, or 512 GB of storage, expandable via microSD. The tablet includes a dual rear camera setup (13 MP + 8 MP), a 12 MP front camera, and a 10,090 mAh battery with fast charging. Key features include the S Pen, DeX mode for a desktop-like experience, quad speakers tuned by AKG, and an in-display fingerprint scanner. It runs on Android with Samsung\'s One UI.</p><a href="https://www.samsung.com/in/tablets/galaxy-tab-s9-fe/buy/?modelCode=SM-X510NLGA&amp;cid=in_pd_ppc_google_im-mobile-smartphone-all-dtc_sales_samsung-tablet(t1)-all-2024_eshop-pmax-pla_10jan2024-na_1ur-501358l-2024-eshop-bau-performancemax-cpc_pfm--21363682011------x--SM-X510NLGAINU&amp;gad_source=1&amp;gclid=EAIaIQobChMI17OuisLYhgMVTNA8Ah2dRADOEAYYASABEgKAJPD_BwE" target="_blank"><img src="https://images.samsung.com/is/image/samsung/assets/in/tablets/galaxy-tab-s9-fe/buy/TabS9FE-Mint_Color-Selection_PC_480x480.jpg?imwidth=480" width="300" height="200" alt="Samsung Galaxy Tab S9 FE"/></a>',
-                                }
+                        {
+                            id: 'GF1',
+                            panorama: '/DEPSTAR/img/1.jpg',
+                            name: 'GROUND_FLOOR',
+                            links: [{ nodeId: 'GF2'}],
+                            gps: [1458.487697, 50.347589, 1],
+                            panoData: { poseHeading: 318 },
+                            sphereCorrection: { pan: '-30deg' },
+                        },
+                        {
+                            id: 'GF2',
+                            panorama: '/DEPSTAR/img/2.jpg',
+                            name: 'GROUND_FLOOR',
+                            links: [{ nodeId: 'GF3' }],
+                            gps: [1458.487697, 50.347589, 1],
+                            panoData: { poseHeading: 318 },
+                            sphereCorrection: { pan: '-30deg' },
+                        },
+                        {
+                            id: 'GF3',
+                            panorama: '/DEPSTAR/img/3.jpg',
+                            name: 'GROUND_FLOOR',
+                            links: [{ nodeId: 'GF4' }],
+                            gps: [1458.487697, 50.347589, 1],
+                            panoData: { poseHeading: 318 },
+                            sphereCorrection: { pan: '-30deg' },
+                        },
+                        {
+                            id: 'GF4',
+                            panorama: '/DEPSTAR/img/4.jpg',
+                            name: 'GROUND_FLOOR',
+                            links: [{ nodeId: 'GF5' }],
+                            gps: [1458.487697, 50.347589, 1],
+                            panoData: { poseHeading: 318 },
+                            sphereCorrection: { pan: '-30deg' },
+                        },
+                        {
+                            id: 'GF5',
+                            panorama: '/DEPSTAR/img/5.jpg',
+                            name: 'GROUND_FLOOR',
+                            links: [{ nodeId: 'GF6' }],
+                            gps: [1458.487697, 50.347589, 1],
+                            panoData: { poseHeading: 318 },
+                            sphereCorrection: { pan: '-30deg' },
+                        },
+                        {
+                            id: 'GF6',
+                            panorama: '/DEPSTAR/img/6.jpg',
+                            name: 'GROUND_FLOOR',
+                            links: [{ nodeId: 'GF7' }],
+                            gps: [1458.487697, 50.347589, 1],
+                            panoData: { poseHeading: 318 },
+                            sphereCorrection: { pan: '-30deg' },
+                        },
+                        {
+                            id: 'GF7',
+                            panorama: '/DEPSTAR/img/7.jpg',
+                            name: 'GROUND_FLOOR',
+                            links: [{ nodeId: 'GF8' }],
+                            gps: [1458.487697, 50.347589, 1],
+                            panoData: { poseHeading: 318 },
+                            sphereCorrection: { pan: '-30deg' },
+                        },
+                        {
+                            id: 'GF8',
+                            panorama: '/DEPSTAR/img/8.jpg',
+                            name: 'GROUND_FLOOR',
+                            links: [{ nodeId: 'GF9' }],
+                            gps: [1458.487697, 50.347589, 1],
+                            panoData: { poseHeading: 318 },
+                            sphereCorrection: { pan: '-30deg' },
+                        },
+                        {
+                            id: 'GF9',
+                            panorama: '/DEPSTAR/img/9.jpg',
+                            name: 'GROUND_FLOOR',
+                            links: [{ nodeId: 'GF10' }],
+                            gps: [1458.487697, 50.347589, 1],
+                            panoData: { poseHeading: 318 },
+                            sphereCorrection: { pan: '-30deg' },
+                        },
+                        {
+                            id: 'GF10',
+                            panorama: '/DEPSTAR/img/10.jpg',
+                            name: 'GROUND_FLOOR',
+                            links: [{ nodeId: 'GF11' }],
+                            gps: [1458.487697, 50.347589, 1],
+                            panoData: { poseHeading: 318 },
+                            sphereCorrection: { pan: '-30deg' },
+                        },
+                        {
+                            id: 'GF11',
+                            panorama: '/DEPSTAR/img/11.jpg',
+                            name: 'GROUND_FLOOR',
+                            links: [{ nodeId: 'GF12' }],
+                            gps: [1458.487697, 50.347589, 1],
+                            panoData: { poseHeading: 318 },
+                            sphereCorrection: { pan: '-30deg' },
+                        },
+                        {
+                            id: 'GF12',
+                            panorama: '/DEPSTAR/img/12.jpg',
+                            name: 'GROUND_FLOOR',
+                            links: [{ nodeId: 'GF13' }],
+                            gps: [1458.487697, 50.347589, 1],
+                            panoData: { poseHeading: 318 },
+                            sphereCorrection: { pan: '-30deg' },
+                        },
 
-                            ],
-                            gps: [389.89813146282756, 99.33039531621873, 1],
+                        {
+                            id: 'GF13',
+                            panorama: '/DEPSTAR/img/13.jpg',
+                            name: 'GROUND_FLOOR',
+                            links: [{ nodeId: 'GF14' }],
+                            gps: [1458.487697, 50.347589, 1],
                             panoData: { poseHeading: 318 },
+                            sphereCorrection: { pan: '-30deg' },
                         },
                         {
-                            id: '2',
-                            panorama: 'cloth1.jpg',
-                            name: 'Clothing Store',
-                            links: [{ nodeId: '3' }],
-                            markers: [
-                                {
-                                    id: 'marker-2',
-                                    element: document.querySelector('#custom-marker-element-for-clothing'),
-                                    position: { yaw: 4.290043272916717, pitch: 0.15326922246341956 },
-                                },
-                                {
-                                    id: 'product-1-cloth',
-                                    polygon: [
-                                        [3.4618374935424603, 0.3800732539773606],
-                                        [3.4613080668559397, -0.53651224466961],
-                                        [3.587547328422776, -0.4591167390775315],
-                                        [3.575526789923936, 0.38135975280431333]
-                                    ],
-                                    tooltip: 'Click here for more information',
-                                    style: {
-                                        fill: 'rgba(0, 0, 255, 0.5)',
-                                        stroke: 'rgba(0, 0, 255, 0.8)',
-                                        strokeWidth: '2px'
-                                    },
-                                    content: '<p>This area is clickable.</p>',
-                                },
-                                {
-                                    id: 'product-2-cloth',
-                                    polygon: [
-                                        [2.942895851805714, -0.32933281549921745],
-                                        [3.0421494747696536, 0.2886473364763298],
-                                        [3.1020407786035586, 0.3022979698865855],
-                                        [3.07440605299915, -0.377121052856785]
-                                    ],
-                                    tooltip: 'Click here for more information',
-                                    style: {
-                                        fill: 'rgba(0, 0, 255, 0.5)',
-                                        stroke: 'rgba(0, 0, 255, 0.8)',
-                                        strokeWidth: '2px'
-                                    },
-                                    content: '<p>This area is clickable.</p>',
-                                }
+                            id: 'GF14',
+                            panorama: '/DEPSTAR/img/14.jpg',
+                            name: 'GROUND_FLOOR',
+                            links: [{ nodeId: 'GF15' }],
+                            gps: [1458.487697, 50.347589, 1],
+                            panoData: { poseHeading: 318 },
+                            sphereCorrection: { pan: '-30deg' },
+                        },
 
-                            ],
-                            gps: [-20.2894, 37.0349, 1],
+                        {
+                            id: 'GF15',
+                            panorama: '/DEPSTAR/img/15.jpg',
+                            name: 'GROUND_FLOOR',
+                            links: [{ nodeId: 'GF16' }],
+                            gps: [1458.487697, 50.347589, 1],
                             panoData: { poseHeading: 318 },
+                            sphereCorrection: { pan: '-30deg' },
+                        },
+
+                        {
+                            id: 'GF16',
+                            panorama: '/DEPSTAR/img/16.jpg',
+                            name: 'GROUND_FLOOR',
+                            links: [{ nodeId: 'GF17' }],
+                            gps: [1458.487697, 50.347589, 1],
+                            panoData: { poseHeading: 318 },
+                            sphereCorrection: { pan: '-30deg' },
+                        },
+
+                        {
+                            id: 'GF17',
+                            panorama: '/DEPSTAR/img/17.jpg',
+                            name: 'GROUND_FLOOR',
+                            links: [{ nodeId: 'GF18' }],
+                            gps: [1458.487697, 50.347589, 1],
+                            panoData: { poseHeading: 318 },
+                            sphereCorrection: { pan: '-30deg' },
                         },
                         {
-                            id: '3',
-                            panorama: 'shoe.jpg',
-                            name: 'Shoe Store',
-                            links: [{ nodeId: '4' }],
-                            markers: [
-                                {
-                                    id: 'marker-3',
-                                    element: document.querySelector('#custom-marker-element-for-shoes'),
-                                    position: { yaw: -766, pitch: 0 },
-                                }
-                            ],
-                            gps: [215, 30.666623, 1],
+                            id: 'GF18',
+                            panorama: '/DEPSTAR/img/18.jpg',
+                            name: 'GROUND_FLOOR',
+                            links: [{ nodeId: 'GF19' }],
+                            gps: [1458.487697, 50.347589, 1],
                             panoData: { poseHeading: 318 },
+                            sphereCorrection: { pan: '-30deg' },
                         },
                         {
-                            id: '4',
-                            panorama: 'restaurant.png',
-                            name: 'Restaurant',
-                            links: [{ nodeId: '5' }],
-                            markers: [
-                                {
-                                    id: 'marker-4',
-                                    element: document.querySelector('#custom-marker-element-for-restaurant'),
-                                    position: { yaw: -766, pitch: 0 },
-                                }
-                            ],
-                            gps: [215, 30.666623, 1],
+                            id: 'GF19',
+                            panorama: '/DEPSTAR/img/19.jpg',
+                            name: 'GROUND_FLOOR',
+                            links: [{ nodeId: 'GF20' }],
+                            gps: [1458.487697, 50.347589, 1],
                             panoData: { poseHeading: 318 },
+                            sphereCorrection: { pan: '-30deg' },
+                        },
+
+                        {
+                            id: 'GF20',
+                            panorama: '/DEPSTAR/img/20.jpg',
+                            name: 'GROUND_FLOOR',
+                            links: [{ nodeId: 'GF21' }],
+                            gps: [1458.487697, 50.347589, 1],
+                            panoData: { poseHeading: 318 },
+                            sphereCorrection: { pan: '-30deg' },
+                        },
+
+                        {
+                            id: 'GF21',
+                            panorama: '/DEPSTAR/img/21.jpg',
+                            name: 'GROUND_FLOOR',
+                            links: [{ nodeId: 'GF22' }],
+                            gps: [1458.487697, 50.347589, 1],
+                            panoData: { poseHeading: 318 },
+                            sphereCorrection: { pan: '-30deg' },
+                        },
+
+                        {
+                            id: 'GF22',
+                            panorama: '/DEPSTAR/img/22.jpg',
+                            name: 'GROUND_FLOOR',
+                            links: [{ nodeId: 'GF23' }],
+                            gps: [1458.487697, 50.347589, 1],
+                            panoData: { poseHeading: 318 },
+                            sphereCorrection: { pan: '-30deg' },
+                        },
+
+                        {
+                            id:'GF23',
+                             panorama:'/DEPSTAR/img/23.jpg',
+                             name:'GROUND_FLOOR',
+                             links:[{nodeId:'GF25'}],
+                             gps:[1458.487697,50.347589,1],
+                             panoData:{poseHeading:'318'},
+                             sphereCorrection:{pan:'-30deg'},
                         },
                         {
-                            id: '5',
-                            panorama: 'salon.jpg',
-                            name: 'Salon',
-                            links: [{ nodeId: '6' }],
-                            markers: [
-                                {
-                                    id: 'marker-5',
-                                    element: document.querySelector('#custom-marker-element-for-salon'),
-                                    position: { yaw: -766, pitch: 0 },
-                                }
-                            ],
-                            gps: [215, 30.666623, 1],
-                            panoData: { poseHeading: 318 },
+                            id:'GF24',
+                             panorama:'/DEPSTAR/img/24.jpg',
+                             name:'GROUND_FLOOR',
+                             links:[{nodeId:'GF25'}],
+                             gps:[1458.487697,50.347589,1],
+                             panoData:{poseHeading:'318'},
+                             sphereCorrection:{pan:'-30deg'},
                         },
                         {
-                            id: '6',
-                            panorama: 'store.jpg',
-                            name: 'General Store',
-                            links: [{ nodeId: '1' }],
-                            markers: [
-                                {
-                                    id: 'marker-6',
-                                    element: document.querySelector('#custom-marker-element-for-general-store'),
-                                    position: { yaw: -766, pitch: 0 },
-                                }
-                            ],
-                            gps: [215, 30.666623, 1],
+                            id: 'GF25',
+                            panorama: '/DEPSTAR/img/25.jpg',
+                            name: 'GROUND_FLOOR',
+                            links: [{ nodeId: 'GF26' }],
+                            gps: [1458.487697, 50.347589, 1],
                             panoData: { poseHeading: 318 },
-                        }
-    ], '1');
-    /*viewer.addEventListener('click', ({ data }) => {
-        console.log(`${data.rightclick ? 'right ' : ''}clicked at yaw: ${data.yaw} pitch: ${data.pitch}`);
-    });*/
+                            sphereCorrection: { pan: '-30deg' },
+                        },
+                        {
+                            id: 'GF26',
+                            panorama: '/DEPSTAR/img/26.jpg',
+                            name: 'GROUND_FLOOR',
+                            links: [{ nodeId: 'GF27' }],
+                            gps: [1458.487697, 50.347589, 1],
+                            panoData: { poseHeading: 318 },
+                            sphereCorrection: { pan: '-30deg' },
+                        },
+                        {
+                            id: 'GF27',
+                            panorama: '/DEPSTAR/img/27.jpg',
+                            name: 'GROUND_FLOOR',
+                            links: [{ nodeId: 'GF28' }],
+                            gps: [1458.487697, 50.347589, 1],
+                            panoData: { poseHeading: 318 },
+                            sphereCorrection: { pan: '-30deg' },
+                        },
+                        {
+                            id:'GF28',
+                             panorama:'/DEPSTAR/img/28.jpg',
+                             name:'GROUND_FLOOR',
+                             links:[{nodeId:'GF29'}],
+                             gps:[1458.487697,50.347589,1],
+                             panoData:{poseHeading:'318'},
+                             sphereCorrection:{pan:'-30deg'},
+                        },
+                        {
+                            id:'GF29',
+                             panorama:'/DEPSTAR/img/29.jpg',
+                             name:'GROUND_FLOOR',
+                             links:[{nodeId:'GF30'}],
+                             gps:[1458.487697,50.347589,1],
+                             panoData:{poseHeading:'318'},
+                             sphereCorrection:{pan:'-30deg'},
+                        },
+                        {
+                            id:'GF30',
+                             panorama:'/DEPSTAR/img/30.jpg',
+                             name:'GROUND_FLOOR',
+                             links:[{nodeId:'GF31'}],
+                             gps:[1458.487697,50.347589,1],
+                             panoData:{poseHeading:'318'},
+                             sphereCorrection:{pan:'-30deg'},
+                        },
+                        {
+                            id:'GF31',
+                             panorama:'/DEPSTAR/img/31.jpg',
+                             name:'GROUND_FLOOR',
+                             links:[{nodeId:'GF32'}],
+                             gps:[1458.487697,50.347589,1],
+                             panoData:{poseHeading:'318'},
+                             sphereCorrection:{pan:'-30deg'},
+                        },
+                        {
+                            id:'GF32',
+                             panorama:'/DEPSTAR/img/32.jpg',
+                             name:'GROUND_FLOOR',
+                             links:[{nodeId:'GF33'}],
+                             gps:[1458.487697,50.347589,1],
+                             panoData:{poseHeading:'318'},
+                             sphereCorrection:{pan:'-30deg'},
+                        },
+                        {
+                            id:'GF33',
+                             panorama:'/DEPSTAR/img/33.jpg',
+                             name:'GROUND_FLOOR',
+                             links:[{nodeId:'GF34'}],
+                             gps:[1458.487697,50.347589,1],
+                             panoData:{poseHeading:'318'},
+                             sphereCorrection:{pan:'-30deg'},
+                        },
+                        {
+                            id:'GF34',
+                             panorama:'/DEPSTAR/img/34.jpg',
+                             name:'GROUND_FLOOR',
+                             links:[{nodeId:'GF35'}],
+                             gps:[1458.487697,50.347589,1],
+                             panoData:{poseHeading:'318'},
+                             sphereCorrection:{pan:'-30deg'},
+                        },
+                        {
+                            id:'GF35',
+                             panorama:'/DEPSTAR/img/35.jpg',
+                             name:'GROUND_FLOOR',
+                             links:[{nodeId:'GF36'}],
+                             gps:[1458.487697,50.347589,1],
+                             panoData:{poseHeading:'318'},
+                             sphereCorrection:{pan:'-30deg'},
+                        },
+                        {
+                            id:'GF36',
+                             panorama:'/DEPSTAR/img/36.jpg',
+                             name:'GROUND_FLOOR',
+                             links:[{nodeId:'GF37'}],
+                             gps:[1458.487697,50.347589,1],
+                             panoData:{poseHeading:'318'},
+                             sphereCorrection:{pan:'-30deg'},
+                        },
+                        {
+                            id:'GF37',
+                             panorama:'/DEPSTAR/img/37.jpg',
+                             name:'GROUND_FLOOR',
+                             links:[{nodeId:'GF38'}],
+                             gps:[1458.487697,50.347589,1],
+                             panoData:{poseHeading:'318'},
+                             sphereCorrection:{pan:'-30deg'},
+                        },
+                        {
+                            id:'GF38',
+                             panorama:'/DEPSTAR/img/38.jpg',
+                             name:'GROUND_FLOOR',
+                             links:[{nodeId:'GF39'}],
+                             gps:[1458.487697,50.347589,1],
+                             panoData:{poseHeading:'318'},
+                             sphereCorrection:{pan:'-30deg'},
+                        },
+                        {
+                            id:'GF39',
+                             panorama:'/DEPSTAR/img/39.jpg',
+                             name:'GROUND_FLOOR',
+                             links:[{nodeId:'GF40'}],
+                             gps:[1458.487697,50.347589,1],
+                             panoData:{poseHeading:'318'},
+                             sphereCorrection:{pan:'-30deg'},
+                        },
+                        {
+                            id:'GF40',
+                             panorama:'/DEPSTAR/img/40.jpg',
+                             name:'GROUND_FLOOR',
+                             links:[{nodeId:'GF41'}],
+                             gps:[1458.487697,50.347589,1],
+                             panoData:{poseHeading:'318'},
+                             sphereCorrection:{pan:'-30deg'},
+                        },
+                        {
+                            id:'GF41',
+                             panorama:'/DEPSTAR/img/41.jpg',
+                             name:'GROUND_FLOOR',
+                             links:[{nodeId:'GF42'}],
+                             gps:[1458.487697,50.347589,1],
+                             panoData:{poseHeading:'318'},
+                             sphereCorrection:{pan:'-30deg'},
+                        },
+                        {
+                            id:'GF42',
+                             panorama:'/DEPSTAR/img/42.jpg',
+                             name:'GROUND_FLOOR',
+                             links:[{nodeId:'GF43'}],
+                             gps:[1458.487697,50.347589,1],
+                             panoData:{poseHeading:'318'},
+                             sphereCorrection:{pan:'-30deg'},
+                        },
+                        {
+                            id:'GF43',
+                             panorama:'/DEPSTAR/img/43.jpg',
+                             name:'GROUND_FLOOR',
+                             links:[{nodeId:'GF44'}],
+                             gps:[1458.487697,50.347589,1],
+                             panoData:{poseHeading:'318'},
+                             sphereCorrection:{pan:'-30deg'},
+                        },
+                        {
+                            id:'GF44',
+                             panorama:'/DEPSTAR/img/44.jpg',
+                             name:'GROUND_FLOOR',
+                             links:[{nodeId:'GF45'}],
+                             gps:[1458.487697,50.347589,1],
+                             panoData:{poseHeading:'318'},
+                             sphereCorrection:{pan:'-30deg'},
+                        },
+                        {
+                            id:'GF45',
+                             panorama:'/DEPSTAR/img/45.jpg',
+                             name:'GROUND_FLOOR',
+                             links:[{nodeId:'GF46'}],
+                             gps:[1458.487697,50.347589,1],
+                             panoData:{poseHeading:'318'},
+                             sphereCorrection:{pan:'-30deg'},
+                        },
+                        {
+                            id:'GF46',
+                             panorama:'/DEPSTAR/img/46.jpg',
+                             name:'GROUND_FLOOR',
+                             links:[{nodeId:'GF47'}],
+                             gps:[1458.487697,50.347589,1],
+                             panoData:{poseHeading:'318'},
+                             sphereCorrection:{pan:'-30deg'},
+                        },
+                        {
+                            id:'GF47',
+                             panorama:'/DEPSTAR/img/47.jpg',
+                             name:'GROUND_FLOOR',
+                             links:[{nodeId:'GF48'}],
+                             gps:[1458.487697,50.347589,1],
+                             panoData:{poseHeading:'318'},
+                             sphereCorrection:{pan:'-30deg'},
+                        },
+                        {
+                            id:'GF48',
+                             panorama:'/DEPSTAR/img/48.jpg',
+                             name:'GROUND_FLOOR',
+                             links:[{nodeId:'GF49'}],
+                             gps:[1458.487697,50.347589,1],
+                             panoData:{poseHeading:'318'},
+                             sphereCorrection:{pan:'-30deg'},
+                        },
+                        {
+                            id:'GF49',
+                             panorama:'/DEPSTAR/img/49.jpg',
+                             name:'GROUND_FLOOR',
+                             links:[{nodeId:'GF50'}],
+                             gps:[1458.487697,50.347589,1],
+                             panoData:{poseHeading:'318'},
+                             sphereCorrection:{pan:'-30deg'},
+                        },
+                        {
+                            id:'GF50',
+                             panorama:'/DEPSTAR/img/50.jpg',
+                             name:'GROUND_FLOOR',
+                             links:[{nodeId:'GF51'}],
+                             gps:[1458.487697,50.347589,1],
+                             panoData:{poseHeading:'318'},
+                             sphereCorrection:{pan:'-30deg'},
+                        },
+                        {
+                            id:'GF51',
+                             panorama:'/DEPSTAR/img/51.jpg',
+                             name:'GROUND_FLOOR',
+                             links:[{nodeId:'GF52'}],
+                             gps:[1458.487697,50.347589,1],
+                             panoData:{poseHeading:'318'},
+                             sphereCorrection:{pan:'-30deg'},
+                        },
+                        {
+                            id:'GF52',
+                             panorama:'/DEPSTAR/img/52.jpg',
+                             name:'GROUND_FLOOR',
+                             links:[{nodeId:'GF53'}],
+                             gps:[1458.487697,50.347589,1],
+                             panoData:{poseHeading:'318'},
+                             sphereCorrection:{pan:'-30deg'},
+                        },
+                        {
+                            id:'GF53',
+                             panorama:'/DEPSTAR/img/53.jpg',
+                             name:'GROUND_FLOOR',
+                             links:[{nodeId:'GF54'}],
+                             gps:[1458.487697,50.347589,1],
+                             panoData:{poseHeading:'318'},
+                             sphereCorrection:{pan:'-30deg'},
+                        },
+                        {
+                            id:'GF54',
+                             panorama:'/DEPSTAR/img/54.jpg',
+                             name:'GROUND_FLOOR',
+                             links:[{nodeId:'GF55'}],
+                             gps:[1458.487697,50.347589,1],
+                             panoData:{poseHeading:'318'},
+                             sphereCorrection:{pan:'-30deg'},
+                        },
+                        {
+                            id:'GF55',
+                             panorama:'/DEPSTAR/img/54.jpg',
+                             name:'GROUND_FLOOR',
+                             links:[{nodeId:'GF56'}],
+                             gps:[1458.487697,50.347589,1],
+                             panoData:{poseHeading:'318'},
+                             sphereCorrection:{pan:'-30deg'}, 
+                        },
+                        {
+                            id:'GF56',
+                             panorama:'/DEPSTAR/img/56.jpg',
+                             name:'GROUND_FLOOR',
+                             links:[{nodeId:'GF57'}],
+                             gps:[1458.487697,50.347589,1],
+                             panoData:{poseHeading:'318'},
+                             sphereCorrection:{pan:'-30deg'}, 
+                        },
+                        {
+                            id:'GF57',
+                             panorama:'/DEPSTAR/img/57.jpg',
+                             name:'GROUND_FLOOR',
+                             links:[{nodeId:'GF58'}],
+                             gps:[1458.487697,50.347589,1],
+                             panoData:{poseHeading:'318'},
+                             sphereCorrection:{pan:'-30deg'}, 
+                        },
+                        {
+                            id:'GF58',
+                             panorama:'/DEPSTAR/img/58.jpg',
+                             name:'GROUND_FLOOR',
+                             links:[{nodeId:'GF59'}],
+                             gps:[1458.487697,50.347589,1],
+                             panoData:{poseHeading:'318'},
+                             sphereCorrection:{pan:'-30deg'}, 
+                        },
+                        {
+                            id:'GF59',
+                             panorama:'/DEPSTAR/img/59.jpg',
+                             name:'GROUND_FLOOR',
+                             links:[{nodeId:'GF60'}],
+                             gps:[1458.487697,50.347589,1],
+                             panoData:{poseHeading:'318'},
+                             sphereCorrection:{pan:'-30deg'}, 
+                        },
+                        {
+                            id:'GF60',
+                             panorama:'/DEPSTAR/img/60.jpg',
+                             name:'GROUND_FLOOR',
+                             links:[{nodeId:'GF61'}],
+                             gps:[1458.487697,50.347589,1],
+                             panoData:{poseHeading:'318'},
+                             sphereCorrection:{pan:'-30deg'}, 
+                        },
+                        {
+                            id:'GF61',
+                             panorama:'/DEPSTAR/img/61.jpg',
+                             name:'GROUND_FLOOR',
+                             links:[{nodeId:'GF62'}],
+                             gps:[1458.487697,50.347589,1],
+                             panoData:{poseHeading:'318'},
+                             sphereCorrection:{pan:'-30deg'}, 
+                        },
+                        {
+                            id:'GF62',
+                             panorama:'/DEPSTAR/img/62.jpg',
+                             name:'GROUND_FLOOR',
+                             links:[{nodeId:'GF63'}],
+                             gps:[1458.487697,50.347589,1],
+                             panoData:{poseHeading:'318'},
+                             sphereCorrection:{pan:'-30deg'}, 
+                        },
+                        {
+                            id:'GF63',
+                             panorama:'/DEPSTAR/img/63.jpg',
+                             name:'GROUND_FLOOR',
+                             links:[{nodeId:'GF64'}],
+                             gps:[1458.487697,50.347589,1],
+                             panoData:{poseHeading:'318'},
+                             sphereCorrection:{pan:'-30deg'}, 
+                        },
+                        {
+                            id:'GF64',
+                             panorama:'/DEPSTAR/img/64.jpg',
+                             name:'GROUND_FLOOR',
+                             links:[{nodeId:'GF65'}],
+                             gps:[1458.487697,50.347589,1],
+                             panoData:{poseHeading:'318'},
+                             sphereCorrection:{pan:'-30deg'}, 
+                        },
+                        {
+                            id:'GF65',
+                             panorama:'/DEPSTAR/img/65.jpg',
+                             name:'GROUND_FLOOR',
+                             links:[{nodeId:'GF66'}],
+                             gps:[1458.487697,50.347589,1],
+                             panoData:{poseHeading:'318'},
+                             sphereCorrection:{pan:'-30deg'}, 
+                        },
+                        {
+                            id:'GF66',
+                             panorama:'/DEPSTAR/img/66.jpg',
+                             name:'GROUND_FLOOR',
+                             links:[{nodeId:'GF67'}],
+                             gps:[1458.487697,50.347589,1],
+                             panoData:{poseHeading:'318'},
+                             sphereCorrection:{pan:'-30deg'}, 
+                        },
+                        {
+                            id:'GF67',
+                             panorama:'/DEPSTAR/img/67.jpg',
+                             name:'GROUND_FLOOR',
+                             links:[{nodeId:'GF1'}],
+                             gps:[1458.487697,50.347589,1],
+                             panoData:{poseHeading:'318'},
+                             sphereCorrection:{pan:'-30deg'}, 
+                        },
+                        
+    ], '');
+    viewer.addEventListener('click', ({ data }) => {
+    const { yaw, pitch, rightclick } = data;
+    const currentNode = virtualTour.getCurrentNode();
+    
+    console.log(`${rightclick ? 'Right-clicked' : 'Clicked'} at:`);
+    console.log(`Yaw: ${yaw.toFixed(2)}°`);
+    console.log(`Pitch: ${pitch.toFixed(2)}°`);
+    
+    if (currentNode && currentNode.gps) {
+        const [currentLongitude, currentLatitude, currentAltitude] = currentNode.gps;
+        console.log(`Current Node GPS Coordinates: Longitude: ${currentLongitude}, Latitude: ${currentLatitude}, Altitude: ${currentAltitude}`);
+        
+        // Approximate GPS changes based on yaw and pitch
+        const deltaLongitude = yaw * 0.1; // Adjust 0.1 to a more suitable scale
+        const deltaLatitude = pitch * 0.1; // Adjust 0.1 to a more suitable scale
+        
+        // Calculate new GPS coordinates based on click
+        const newLongitude = currentLongitude + deltaLongitude;
+        const newLatitude = currentLatitude + deltaLatitude;
+        
+        console.log(`Estimated Click GPS Coordinates: Longitude: ${newLongitude.toFixed(6)}, Latitude: ${newLatitude.toFixed(6)}, Altitude: ${currentAltitude}`);
+    } else {
+        console.log('No GPS data for this node.');
+    }
+});
+
+    // viewer.addEventListener('click', ({ data }) => {
+    //     console.log(`${data.rightclick ? 'right ' : ''}clicked at yaw: ${data.yaw} pitch: ${data.pitch}`);
+    // });
 </script>
