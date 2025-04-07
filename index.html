@@ -9,22 +9,6 @@
 <!-- the viewer container must have a defined size
 <div id="viewer" style="width: 100vw; height: 100vh;"></div> -->
 
-<<<<<<< HEAD
-=======
-<custom-marker id="custom-marker-element" style="display: none">
-    <!-- Custom marker content -->
-    <img src="/DEPSTAR/img/1.jpg" />
-    <h2>Custom Marker</h2>
-    <p>This is a custom marker for the virtual tour.</p>
-</custom-marker>
-
-<custom-marker id="custom-marker-element" style="display: none">
-    <!-- Custom marker content -->
-    <img src="/img/1.jpg" />
-    <h2>Custom Marker</h2>
-    <p>This is a custom marker for the virtual tour.</p>
-</custom-marker>
->>>>>>> 4809bc65dc8722675d055ae165ddae0eea1ec97c
 
 <head>
     <!-- for optimal display on high DPI devices -->
@@ -240,7 +224,6 @@ viewerSize: ${viewerSize.width}px x ${viewerSize.height}px
     
     const virtualTour = viewer.getPlugin(VirtualTourPlugin);
 
-<<<<<<< HEAD
     // Define nodes array
     const nodes = [
         {
@@ -730,117 +713,6 @@ viewerSize: ${viewerSize.width}px x ${viewerSize.height}px
             links: [{ nodeId: 'GF1', position: { yaw: 0, pitch: 0 } }],
         }
     ];
-=======
-    virtualTour.setNodes([
-                        {
-                            id: 'GF1',
-                            panorama: '/img/1.jpg',
-                            name: 'GROUND_FLOOR',
-                            links: [{ nodeId: 'GF2'}],
-                            gps: [1458.487697, 50.347589, 1],
-                            panoData: { poseHeading: 318 },
-                            sphereCorrection: { pan: '-30deg' },
-                        },
-                        {
-                            id: 'GF2',
-                            panorama: '/img/2.jpg',
-                            name: 'GROUND_FLOOR',
-                            links: [{ nodeId: 'GF3' }],
-                            gps: [1458.487697, 50.347589, 1],
-                            panoData: { poseHeading: 318 },
-                            sphereCorrection: { pan: '-30deg' },
-                        },
-                        {
-                            id: 'GF3',
-                            panorama: '/DEPSTAR/img/3.jpg',
-                            name: 'GROUND_FLOOR',
-                            links: [{ nodeId: 'GF4' }],
-                            gps: [1458.487697, 50.347589, 1],
-                            panoData: { poseHeading: 318 },
-                            sphereCorrection: { pan: '-30deg' },
-                        },
-                        {
-                            id: 'GF4',
-                            panorama: '/DEPSTAR/img/4.jpg',
-                            name: 'GROUND_FLOOR',
-                            links: [{ nodeId: 'GF5' }],
-                            gps: [1458.487697, 50.347589, 1],
-                            panoData: { poseHeading: 318 },
-                            sphereCorrection: { pan: '-30deg' },
-                        },
-                        {
-                            id: 'GF5',
-                            panorama: '/DEPSTAR/img/5.jpg',
-                            name: 'GROUND_FLOOR',
-                            links: [{ nodeId: 'GF6' }],
-                            gps: [1458.487697, 50.347589, 1],
-                            panoData: { poseHeading: 318 },
-                            sphereCorrection: { pan: '-30deg' },
-                        },
-                        {
-                            id: 'GF6',
-                            panorama: '/DEPSTAR/img/6.jpg',
-                            name: 'GROUND_FLOOR',
-                            links: [{ nodeId: 'GF7' }],
-                            gps: [1458.487697, 50.347589, 1],
-                            panoData: { poseHeading: 318 },
-                            sphereCorrection: { pan: '-30deg' },
-                        },
-                        {
-                            id: 'GF7',
-                            panorama: '/DEPSTAR/img/7.jpg',
-                            name: 'GROUND_FLOOR',
-                            links: [{ nodeId: 'GF8' }],
-                            gps: [1458.487697, 50.347589, 1],
-                            panoData: { poseHeading: 318 },
-                            sphereCorrection: { pan: '-30deg' },
-                        },
-                        {
-                            id: 'GF8',
-                            panorama: '/DEPSTAR/img/8.jpg',
-                            name: 'GROUND_FLOOR',
-                            links: [{ nodeId: 'GF9' }],
-                            gps: [1458.487697, 50.347589, 1],
-                            panoData: { poseHeading: 318 },
-                            sphereCorrection: { pan: '-30deg' },
-                        },
-                        {
-                            id: 'GF9',
-                            panorama: '/DEPSTAR/img/9.jpg',
-                            name: 'GROUND_FLOOR',
-                            links: [{ nodeId: 'GF10' }],
-                            gps: [1458.487697, 50.347589, 1],
-                            panoData: { poseHeading: 318 },
-                            sphereCorrection: { pan: '-30deg' },
-                        },
-                        {
-                            id: 'GF10',
-                            panorama: '/DEPSTAR/img/10.jpg',
-                            name: 'GROUND_FLOOR',
-                            links: [{ nodeId: 'GF11' }],
-                            gps: [1458.487697, 50.347589, 1],
-                            panoData: { poseHeading: 318 },
-                            sphereCorrection: { pan: '-30deg' },
-                        },
-                        {
-                            id: 'GF11',
-                            panorama: '/DEPSTAR/img/11.jpg',
-                            name: 'GROUND_FLOOR',
-                            links: [{ nodeId: 'GF12' }],
-                            gps: [1458.487697, 50.347589, 1],
-                            panoData: { poseHeading: 318 },
-                            sphereCorrection: { pan: '-30deg' },
-                        },
-                        {
-                            id: 'GF12',
-                            panorama: '/DEPSTAR/img/12.jpg',
-                            name: 'GROUND_FLOOR',
-                            links: [{ nodeId: 'GF13' }],
-                            gps: [1458.487697, 50.347589, 1],
-                            panoData: { poseHeading: 318 },
-                            sphereCorrection: { pan: '-30deg' },
-                        },
->>>>>>> 4809bc65dc8722675d055ae165ddae0eea1ec97c
 
     // Add scenes list toggle button
     const scenesListButton = document.createElement('button');
