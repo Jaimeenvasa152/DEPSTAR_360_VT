@@ -23,7 +23,10 @@
     <p>Devang Patel Institute of Advance Technology and Research (DEPSTAR) is a constituent of CHARUSAT. The institute is managed through a think tank of technocrats, administrators, scientists and engineers, educationalists, businessmen, stakeholders and other well-wishers from all parts of the world. DEPSTAR is patronized by IPCO Industries, headed by Philanthropist and Industrialist Shri Devang Patel. The institute envisions being a forerunner in teaching and research in advanced technologies. For this, in years to come, it will be an institute with advanced infrastructure, distinguished faculty, networking with global institutes and implementing most modern processes. DEPSTAR has total intake of 300 Seats with Computer Engineering (120 seats), Computer Science & Engineering (120 seats) and Information Technology (60 seats). The average experience of faculties is more than 6 years in Teaching, Industry and Research Domain.</p>
 </custom-marker>
 
-
+<custom-marker id="custom-marker-element-depstar-thanks" style="display: run-in">
+    <h2>Thank you for visiting DEPSTAR</h2>
+    <!-- <p>Devang Patel Institute of Advance Technology and Research (DEPSTAR) is a constituent of CHARUSAT. The institute is managed through a think tank of technocrats, administrators, scientists and engineers, educationalists, businessmen, stakeholders and other well-wishers from all parts of the world. DEPSTAR is patronized by IPCO Industries, headed by Philanthropist and Industrialist Shri Devang Patel. The institute envisions being a forerunner in teaching and research in advanced technologies. For this, in years to come, it will be an institute with advanced infrastructure, distinguished faculty, networking with global institutes and implementing most modern processes. DEPSTAR has total intake of 300 Seats with Computer Engineering (120 seats), Computer Science & Engineering (120 seats) and Information Technology (60 seats). The average experience of faculties is more than 6 years in Teaching, Industry and Research Domain.</p> -->
+</custom-marker>
 
 
 <!-- the viewer container must have a defined size -->
@@ -710,6 +713,14 @@ viewerSize: ${viewerSize.width}px x ${viewerSize.height}px
             id: 'SF67',
             panorama: '/img/67.jpg',
             name: 'SECOND_FLOOR',
+            markers: [
+                {
+                    id: 'marker-2',
+                    element: document.querySelector('#custom-marker-element-depstar-thanks'),
+                    size: { width: 50, height: 50 },
+                    position: { yaw: -6, pitch: 0.3 },
+                },
+            ],
             links: [{ nodeId: 'GF1', position: { yaw: 0, pitch: 0 } }],
         }
     ];
