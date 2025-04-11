@@ -188,15 +188,15 @@
         });
     }
 
-    updateMarker({ marker, position, viewerPosition, zoomLevel, viewerSize }) {
-        this.legend.innerText = `Params
-position: ${position.x}px x ${position.y}px
-viewerPosition: ${this.fmt.format(viewerPosition.yaw)}rad / ${this.fmt.format(viewerPosition.pitch)}rad
-zoomLevel: ${zoomLevel}%
-viewerSize: ${viewerSize.width}px x ${viewerSize.height}px
-`;
-        this.tooltip.classList.toggle('bottom', position.y < viewerSize.height / 3);
-    }
+//     updateMarker({ marker, position, viewerPosition, zoomLevel, viewerSize }) {
+//         this.legend.innerText = `Params
+// position: ${position.x}px x ${position.y}px
+// viewerPosition: ${this.fmt.format(viewerPosition.yaw)}rad / ${this.fmt.format(viewerPosition.pitch)}rad
+// zoomLevel: ${zoomLevel}%
+// viewerSize: ${viewerSize.width}px x ${viewerSize.height}px
+// `;
+//         this.tooltip.classList.toggle('bottom', position.y < viewerSize.height / 3);
+//     }
 }
 
 
