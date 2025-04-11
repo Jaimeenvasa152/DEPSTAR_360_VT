@@ -36,6 +36,7 @@
 <script type="importmap">
     {
         "imports": {
+         
             "three": "https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js",
             "@photo-sphere-viewer/core": "https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/core/index.module.js",
             "@photo-sphere-viewer/virtual-tour-plugin": "https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/virtual-tour-plugin@5/index.module.js",
@@ -211,18 +212,16 @@
         defaultYaw: '0deg',
         plugins: [
             [VirtualTourPlugin, {
-                //positionMode: 'gps',
                 renderMode: '3d',
                 transitionOptions: {
-                    fadeIn: true, // Disable fade-in for smoother transition
-                    rotation: true, // Enable rotation during transition
+                    fadeIn: true,
+                    rotation: true,
                     showLoader: false,
-                    speed: "10rpm", // Adjust the speed of transition
-                    zoomTo: 0, // Set your desired zoom level here
+                    speed: "10rpm",
+                    zoomTo: 0
                 }
             }],
-            
-            MarkersPlugin, 
+            MarkersPlugin
         ],
         navbar: [
             'move',
@@ -446,7 +445,7 @@
             id: 'FF23',
             panorama: '/DEPSTAR/img/23.jpg',
             name: 'FIRST_FLOOR',
-            links: [{ nodeId: 'FF25', position: { yaw: 0, pitch: 0 } },],
+            links: [{ nodeId: 'FF24', position: { yaw: 0, pitch: 0 } },],
         },
         
         {
