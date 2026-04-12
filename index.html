@@ -1,68 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-    <!-- for optimal display on high DPI devices -->
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/core@5/index.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/markers-plugin@5/index.css" />
+    <title>DEPSTAR 360 Virtual Tour</title>
     <link rel="stylesheet" href="style.css" />
 </head>
 
-<!-- the viewer container must have a defined size
-<div id="viewer" style="width: 100vw; height: 100vh;"></div> -->
+<body>
+
+    <custom-marker id="custom-marker-element-depstar-info" style="display: none;">
+        <h2>Welcome to DEPSTAR</h2>
+        <p>Devang Patel Institute of Advanced Technology and Research (DEPSTAR), a constituent of CHARUSAT, is managed
+            by a diverse group of experts including technocrats, educators, and industry professionals. Supported by
+            IPCO Industries and led by philanthropist Shri Devang Patel, the institute aims to excel in advanced
+            technology education and research. It focuses on building strong infrastructure, experienced faculty, global
+            collaborations, and modern processes. DEPSTAR offers 300 seats across Computer Engineering (120), Computer
+            Science & Engineering (120), and Information Technology (60), with faculty averaging over 6 years of
+            experience in teaching, industry, and research.</p>
+    </custom-marker>
+
+    <custom-marker id="custom-marker-element-depstar-thanks" style="display: none;">
+        <h2>Thank you for visiting DEPSTAR</h2>
+    </custom-marker>
+
+    <custom-marker id="custom-marker-element-network-lab" style="display: none;">
+        <h2>Sophos Network Security Lab</h2>
+        <p>State-of-the-art infrastructure dedicated to network security operations, ethical hacking, and cyber threat
+            intelligence. Powered by Sophos, this lab provides students with hands-on experience in fighting modern
+            cyber threats.</p>
+    </custom-marker>
+
+    <custom-marker id="custom-marker-element-mac-lab" style="display: none;">
+        <h2>Advanced Mac Lab</h2>
+        <p>Equipped with state-of-the-art Apple iMacs featuring M-series Apple Silicon. Dedicated to mobile app
+            development, AR/VR engineering, and high-performance creative workloads.</p>
+    </custom-marker>
+
+    <custom-marker id="custom-marker-element-arvr-lab" style="display: none;">
+        <h2>AR/VR Innovation Lab</h2>
+        <p>Equipped with Meta Quest headsets and spatial computing infrastructure. Students build immersive realities,
+            simulation software, and next-generation interactive experiences.</p>
+    </custom-marker>
+
+    <custom-marker id="custom-marker-element-aiml-lab" style="display: none;">
+        <h2>AI/ML Research Lab</h2>
+        <p>Powered by high-performance GPU clusters, this lab focuses on deep learning, neural networks, natural
+            language processing, and advanced machine learning modeling.</p>
+    </custom-marker>
+
+    <custom-marker id="custom-marker-element-classroom" style="display: none;">
+        <h2>Interactive Classroom</h2>
+        <p>Our classrooms are designed for collaborative learning,high-speed WiFi, and ergonomically designed seating to
+            foster an engaging environment for 120+ students.</p>
+    </custom-marker>
 
 
-<head>
-    <!-- for optimal display on high DPI devices -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/core@5/index.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/markers-plugin@5/index.css" />
-    <link rel="stylesheet" href="style.css" />
-</head>
+    <!-- the viewer container must have a defined size -->
+    <div id="viewer" style="width: 100%; height: 100%;"></div>
 
-<custom-marker id="custom-marker-element-depstar-info" style="display: run-in">
-    <h2>Welcome to DEPSTAR</h2>
-    <p>Devang Patel Institute of Advance Technology and Research (DEPSTAR) is a constituent of CHARUSAT. The institute is managed through a think tank of technocrats, administrators, scientists and engineers, educationalists, businessmen, stakeholders and other well-wishers from all parts of the world. DEPSTAR is patronized by IPCO Industries, headed by Philanthropist and Industrialist Shri Devang Patel. The institute envisions being a forerunner in teaching and research in advanced technologies. For this, in years to come, it will be an institute with advanced infrastructure, distinguished faculty, networking with global institutes and implementing most modern processes. DEPSTAR has total intake of 300 Seats with Computer Engineering (120 seats), Computer Science & Engineering (120 seats) and Information Technology (60 seats). The average experience of faculties is more than 6 years in Teaching, Industry and Research Domain.</p>
-</custom-marker>
+    <!-- ═══ LANDING SCREEN ═══ -->
+    <div id="landing-screen">
+        <div class="landing-overlay"></div>
+        <div class="landing-content">
+            <div class="landing-header">
+                <!-- <div class="institute-badge">CHARUSAT University &middot; Anand</div> -->
+                <img src="/DEPSTAR-1/img/charusatlogo.png" alt="DEPSTAR Logo" class="institute-logo">
+                <h1 class="landing-title">DEPSTAR</h1>
+                <p class="landing-subtitle">360&deg; Virtual Campus Tour</p>
+                <p class="landing-desc">Devang Patel Institute of Advance Technology and Research</p>
+            </div>
+            <p class="choose-label">Select a location to explore</p>
+            <div id="landing-main-view" class="tour-grid">
+                <div class="tour-card" data-scene="GF1">
+                    <div class="card-icon">🏛️</div>
+                    <div class="card-body">
+                        <h3>Main Entrance</h3>
+                        <p>Iconic campus entrance &amp; outdoor grounds</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-floor-badge">Ground Floor</span>
+                        <span class="card-arrow">→</span>
+                    </div>
+                </div>
+                <div class="tour-card" data-scene="GF4">
+                    <div class="card-icon">🏫</div>
+                    <div class="card-body">
+                        <h3>Lobby &amp; Corridor</h3>
+                        <p>Ground floor lobby, offices &amp; corridors</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-floor-badge">Ground Floor</span>
+                        <span class="card-arrow">→</span>
+                    </div>
+                </div>
+                <div class="tour-card" id="btn-seminar-halls">
+                    <div class="card-icon">🎤</div>
+                    <div class="card-body">
+                        <h3>Seminar Halls</h3>
+                        <p>Dedicated spaces for events &amp; workshops</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-floor-badge">Multiple</span>
+                        <span class="card-arrow">→</span>
+                    </div>
+                </div>
+                <div class="tour-card" data-scene="FF37">
+                    <div class="card-icon">📚</div>
+                    <div class="card-body">
+                        <h3>Interactive Classrooms</h3>
+                        <p>Interactive boards &amp; collaborative spaces</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-floor-badge">First Floor</span>
+                        <span class="card-arrow">→</span>
+                    </div>
+                </div>
+                <div class="tour-card" id="btn-computer-labs">
+                    <div class="card-icon">💻</div>
+                    <div class="card-body">
+                        <h3>Computer Labs</h3>
+                        <p>Sophos, Mac, AR/VR, and AI/ML labs</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-floor-badge">Multiple</span>
+                        <span class="card-arrow">→</span>
+                    </div>
+                </div>
+                <div class="tour-card featured" data-scene="GF1">
+                    <div class="card-icon">🎓</div>
+                    <div class="card-body">
+                        <h3>Full Campus Tour</h3>
+                        <p>Complete walkthrough from entrance to top floor</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-floor-badge">All Floors</span>
+                        <span class="card-arrow">→</span>
+                    </div>
+                </div>
+            </div>
 
-<custom-marker id="custom-marker-element-depstar-thanks" style="display: run-in">
-    <h2>Thank you for visiting DEPSTAR</h2>
-    <!-- <p>Devang Patel Institute of Advance Technology and Research (DEPSTAR) is a constituent of CHARUSAT. The institute is managed through a think tank of technocrats, administrators, scientists and engineers, educationalists, businessmen, stakeholders and other well-wishers from all parts of the world. DEPSTAR is patronized by IPCO Industries, headed by Philanthropist and Industrialist Shri Devang Patel. The institute envisions being a forerunner in teaching and research in advanced technologies. For this, in years to come, it will be an institute with advanced infrastructure, distinguished faculty, networking with global institutes and implementing most modern processes. DEPSTAR has total intake of 300 Seats with Computer Engineering (120 seats), Computer Science & Engineering (120 seats) and Information Technology (60 seats). The average experience of faculties is more than 6 years in Teaching, Industry and Research Domain.</p> -->
-</custom-marker>
+            <div id="landing-labs-view" class="tour-grid" style="display: none;">
+                <button class="back-link-btn" id="btn-back-to-categories">
+                    <span class="icon">←</span> Back to Categories
+                </button>
+                <div class="tour-card" data-scene="SF43">
+                    <div class="card-icon">🛡️</div>
+                    <div class="card-body">
+                        <h3>Sophos Security</h3>
+                        <p>State-of-the-art network security &amp; ethical hacking</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-floor-badge">Second Floor</span>
+                        <span class="card-arrow">→</span>
+                    </div>
+                </div>
+                <div class="tour-card" data-scene="SF55">
+                    <div class="card-icon">🍏</div>
+                    <div class="card-body">
+                        <h3>Advanced Mac Lab</h3>
+                        <p>iMac infrastructure for mobile &amp; creative workflows</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-floor-badge">Second Floor</span>
+                        <span class="card-arrow">→</span>
+                    </div>
+                </div>
+                <div class="tour-card" data-scene="SF50">
+                    <div class="card-icon">🥽</div>
+                    <div class="card-body">
+                        <h3>AR/VR Innovation</h3>
+                        <p>Meta Quest and spatial computing lab</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-floor-badge">Second Floor</span>
+                        <span class="card-arrow">→</span>
+                    </div>
+                </div>
+                <div class="tour-card" data-scene="GF13">
+                    <div class="card-icon">🤖</div>
+                    <div class="card-body">
+                        <h3>AI/ML Research</h3>
+                        <p>GPU clusters for deep learning and AI</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-floor-badge">Second Floor</span>
+                        <span class="card-arrow">→</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="landing-seminars-view" class="tour-grid" style="display: none;">
+                <button class="back-link-btn" id="btn-back-to-categories-seminar">
+                    <span class="icon">←</span> Back to Categories
+                </button>
+                <div class="tour-card" data-scene="FF34">
+                    <div class="card-icon">🎤</div>
+                    <div class="card-body">
+                        <h3>Seminar Hall 1</h3>
+                        <p>Primary event space with full AV setup</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-floor-badge">First Floor</span>
+                        <span class="card-arrow">→</span>
+                    </div>
+                </div>
+                <div class="tour-card" data-scene="SF50">
+                    <div class="card-icon">🎤</div>
+                    <div class="card-body">
+                        <h3>Seminar Hall 2</h3>
+                        <p>Secondary event and workshop space</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-floor-badge">First Floor</span>
+                        <span class="card-arrow">→</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Menu -->
+    <button id="back-to-menu-btn">
+        🏠 &nbsp;Choose Location
+    </button>
 
 
-<!-- the viewer container must have a defined size -->
-<div id="viewer" style="width: 100%; height: 100%;"></div>
-
-
-<script type="importmap">
+    <script type="importmap">
     {
         "imports": {
             "three": "https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js",
             "@photo-sphere-viewer/core": "https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/core/index.module.js",
             "@photo-sphere-viewer/virtual-tour-plugin": "https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/virtual-tour-plugin@5/index.module.js",
             "@photo-sphere-viewer/gallery-plugin": "https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/gallery-plugin@5/index.module.js",
+            "@photo-sphere-viewer/autorotate-plugin": "https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/autorotate-plugin@5/index.module.js",
             "@photo-sphere-viewer/markers-plugin": "https://cdn.jsdelivr.net/npm/@photo-sphere-viewer/markers-plugin@5/index.module.js"
         }
     }
 </script>
 
-<script type="module">
-    
-    import { Viewer } from '@photo-sphere-viewer/core';
-    import { VirtualTourPlugin } from '@photo-sphere-viewer/virtual-tour-plugin';
-    import { MarkersPlugin } from '@photo-sphere-viewer/markers-plugin';
+    <script type="module">
 
-    const baseUrl = '/img/d.gif';
-    // const caption = 'Cape Florida Light, Key Biscayne <b>&copy; Pixexid</b>';
+        import { Viewer } from '@photo-sphere-viewer/core';
+        import { VirtualTourPlugin } from '@photo-sphere-viewer/virtual-tour-plugin';
+        import { MarkersPlugin } from '@photo-sphere-viewer/markers-plugin';
+        import { GalleryPlugin } from '@photo-sphere-viewer/gallery-plugin';
+        import { AutorotatePlugin } from '@photo-sphere-viewer/autorotate-plugin';
 
-    // Declare the custom marker element
-    class CustomMarkerElement extends HTMLElement {
-    constructor() {
-        super();
-        this.fmt = new Intl.NumberFormat({ maximumSignificantDigits: 4 });
-        const dom = this.attachShadow({ mode: 'closed' });
+        const baseUrl = '/DEPSTAR-1/img/d.gif';
+        // const caption = 'Cape Florida Light, Key Biscayne <b>&copy; Pixexid</b>';
 
-        const style = document.createElement('style');
-        style.textContent = `
+        // Declare the custom marker element
+        class CustomMarkerElement extends HTMLElement {
+            constructor() {
+                super();
+                this.fmt = new Intl.NumberFormat({ maximumSignificantDigits: 4 });
+                const dom = this.attachShadow({ mode: 'closed' });
+
+                const style = document.createElement('style');
+                style.textContent = `
             :host {
                 display: block;
                 position: relative;
@@ -160,589 +357,656 @@
                 100% { transform: rotate(30deg); opacity: 0; }
             }
                     `;
-                    dom.appendChild(style);
+                dom.appendChild(style);
 
-                    const button = document.createElement('button');
+                const button = document.createElement('button');
 
-                    button.innerHTML = `
-                            <img src="/img/i.png" alt="Info" style="width: 100%; height: 100%; object-fit: contain;" />
+                button.innerHTML = `
+                            <img src="/DEPSTAR-1/img/i.png" alt="Info" style="width: 100%; height: 100%; object-fit: contain;" />
                     `;
 
 
-        dom.appendChild(button);
+                dom.appendChild(button);
 
-        this.tooltip = document.createElement('div');
-        this.tooltip.classList.add('tooltip');
-        dom.appendChild(this.tooltip);
-        this.tooltip.innerHTML = '<slot></slot>';
+                this.tooltip = document.createElement('div');
+                this.tooltip.classList.add('tooltip');
+                dom.appendChild(this.tooltip);
+                this.tooltip.innerHTML = '<slot></slot>';
 
-        this.legend = document.createElement('pre');
-        this.tooltip.appendChild(this.legend);
+                this.legend = document.createElement('pre');
+                this.tooltip.appendChild(this.legend);
 
-        button.addEventListener('mouseleave', () => {
-            this.tooltip.classList.add('hiding');
-        });
+                button.addEventListener('mouseleave', () => {
+                    this.tooltip.classList.add('hiding');
+                });
 
-        dom.addEventListener('animationend', () => {
-            this.tooltip.classList.remove('hiding');
-        });
-    }
+                dom.addEventListener('animationend', () => {
+                    this.tooltip.classList.remove('hiding');
+                });
+            }
 
-//     updateMarker({ marker, position, viewerPosition, zoomLevel, viewerSize }) {
-//         this.legend.innerText = `Params
-// position: ${position.x}px x ${position.y}px
-// viewerPosition: ${this.fmt.format(viewerPosition.yaw)}rad / ${this.fmt.format(viewerPosition.pitch)}rad
-// zoomLevel: ${zoomLevel}%
-// viewerSize: ${viewerSize.width}px x ${viewerSize.height}px
-// `;
-//         this.tooltip.classList.toggle('bottom', position.y < viewerSize.height / 3);
-//     }
-}
-
-
-    // Register the custom element
-    customElements.define('custom-marker', CustomMarkerElement);
-
-    const viewer = new Viewer({
-        container: document.querySelector('#viewer'),
-        panorama: '/img/1.jpg',
-        loadingImg: baseUrl,
-        touchmoveTwoFingers: false,
-        defaultYaw: '0deg',
-        plugins: [
-            [VirtualTourPlugin, {
-                //positionMode: 'gps',
-                renderMode: '3d',
-                transitionOptions: {
-                    fadeIn: true, // Disable fade-in for smoother transition
-                    rotation: true, // Enable rotation during transition
-                    showLoader: false,
-                    speed: "10rpm", // Adjust the speed of transition
-                    zoomTo: 0, // Set your desired zoom level here
-                }
-            }], 
-            MarkersPlugin, 
-        ],
-        navbar: [
-            'move',
-            'caption',
-            'fullscreen',
-        ],
-    });
-    
-    const virtualTour = viewer.getPlugin(VirtualTourPlugin);
-
-    // Define nodes array
-    const nodes = [
-        {
-            id: 'GF1',
-            panorama: '/img/1.jpg',
-            name: 'GROUND_FLOOR',
-            markers: [
-                {
-                    id: 'marker-1',
-                    element: document.querySelector('#custom-marker-element-depstar-info'),
-                    size: { width: 50, height: 50 },
-                    position: { yaw: -6, pitch: 0.3 },
-                },
-            ],
-            links: [{ nodeId: 'GF2', position: { yaw: 0, pitch: 0 } }],
-        },
-        {
-            id: 'GF2',
-            panorama: '/img/2.jpg',
-            name: 'GROUND_FLOOR',
-            links: [{ nodeId: 'GF2_1', position: { yaw: 0, pitch: 0 } }],
-        },
-        {
-            id: 'GF2_1',
-            panorama: '/img/20.jpg',
-            name: 'GROUND_FLOOR',
-            links: [
-                { nodeId: 'GF3', position: { yaw: 5, pitch: 0 } },
-                { nodeId: 'GF21', position: { yaw: 0, pitch: 0 } }
-            ],
-        },
-        {
-            id: 'GF3',
-            panorama: '/img/3.jpg',
-            name: 'GROUND_FLOOR',
-            links: [{ nodeId: 'GF4', position: { yaw: 0, pitch: 0 } },
-                    { nodeId: 'SG1', position: { yaw: -5, pitch: 0 } }
-            ],
-        },
-        {
-            id: 'SG1',
-            panorama: '/img/SG1.jpg',
-            name: 'GROUND_FLOOR',
-            links: [{ nodeId: 'SG2', position: { yaw: 0, pitch: 0 } }],
-        },
-        {
-            id: 'SG2',
-            panorama: '/img/SG2.jpg',
-            name: 'GROUND_FLOOR',
-            links: [{ nodeId: 'SG3', position: { yaw: 0, pitch: 0 } }],
-        },
-        {
-            id: 'SG3',
-            panorama: '/img/SG3.jpg',
-            name: 'GROUND_FLOOR',
-            links: [{ nodeId: 'GF20', position: { yaw: 0, pitch: 0 } }],
-        },
-        {
-            id: 'GF4',
-            panorama: '/img/4.jpg',
-            name: 'GROUND_FLOOR',
-            links: [{ nodeId: 'GF5', position: { yaw: 0, pitch: 0 } }],
-        },
-        {
-            id: 'GF5',
-            panorama: '/img/5.jpg',
-            name: 'GROUND_FLOOR',
-            links: [{ nodeId: 'GF6', position: { yaw: 0, pitch: 0 } }],
-        },
-        {
-            id: 'GF6',
-            panorama: '/img/6.jpg',
-            name: 'GROUND_FLOOR',
-            links: [{ nodeId: 'GF7', position: { yaw: 0, pitch: 0 } },
-                {
-                    nodeId: 'STC1',position: { yaw: -5, pitch: 0 }
-                }
-            ],
-        },
-        {
-            id: 'STC1',
-            panorama: '/img/STC1.jpg',
-            name: 'GROUND_FLOOR',
-            links: [{ nodeId: 'FF26', position: { yaw: 0, pitch: 0 } }],
-        },
-        {
-            id: 'GF7',
-            panorama: '/img/7.jpg',
-            name: 'GROUND_FLOOR',
-            links: [{ nodeId: 'GF8', position: { yaw: 0, pitch: 0 } }],
-        },
-        {
-            id: 'GF8',
-            panorama: '/img/8.jpg',
-            name: 'GROUND_FLOOR',
-            links: [{ nodeId: 'GF9', position: { yaw: 0, pitch: 0 } }],
-        },
-        {
-            id: 'GF9',
-            panorama: '/img/9.jpg',
-            name: 'GROUND_FLOOR',
-            links: [{ nodeId: 'GF10', position: { yaw: 0, pitch: 0 } }],
-        },
-        {
-            id: 'GF10',
-            panorama: '/img/10.jpg',
-            name: 'GROUND_FLOOR',
-            links: [{ nodeId: 'GF11', position: { yaw: 0, pitch: 0 } },
-                    
-            ],
-        },
-        {
-            id: 'GF11',
-            panorama: '/img/11.jpg',
-            name: 'GROUND_FLOOR',
-            links: [{ nodeId: 'GF12', position: { yaw: 0, pitch: 0 } },
-            { nodeId: 'STB_1', position: { yaw:-5, pitch: 0 } },
-            ],
-        },
-        {
-            id: 'STB_1',
-            panorama: '/img/STB_1.jpg',
-            name: 'GROUND_FLOOR',
-            links: [{ nodeId: 'STB_2', position: { yaw: 0, pitch: 0 } }],
-        },
-        {
-            id: 'STB_2',
-            panorama: '/img/STB_2.jpg',
-            name: 'GROUND_FLOOR',
-            links: [{ nodeId: 'SF49', position: { yaw: 0, pitch: 0 } }],
-        },
-        {
-            id: 'GF12',
-            panorama: '/img/12.jpg',
-            name: 'GROUND_FLOOR',
-            links: [{ nodeId: 'GF13', position: { yaw: 0, pitch: 0 } }],
-        },
-        {
-            id: 'GF13',
-            panorama: '/img/13.jpg',
-            name: 'GROUND_FLOOR',
-            links: [{ nodeId: 'GF14', position: { yaw: 0, pitch: 0 } }],
-        },
-        {
-            id: 'GF14',
-            panorama: '/img/14.jpg',
-            name: 'GROUND_FLOOR',
-            links: [{ nodeId: 'GF15', position: { yaw: 0, pitch: 0 } }],
-        },
-        {
-            id: 'GF15',
-            panorama: '/img/15.jpg',
-            name: 'GROUND_FLOOR',
-            links: [{ nodeId: 'GF16', position: { yaw: 0, pitch: 0 } }],
-        },
-        {
-            id: 'GF16',
-            panorama: '/img/16.jpg',
-            name: 'GROUND_FLOOR',
-            links: [{ nodeId: 'GF17', position: { yaw: 0, pitch: 0 } }],
-        },
-        {
-            id: 'GF17',
-            panorama: '/img/17.jpg',
-            name: 'GROUND_FLOOR',
-            links: [{ nodeId: 'GF18', position: { yaw: 0, pitch: 0 } },
-                {
-                    nodeId: 'STL1',position: { yaw: -5, pitch: 0 }
-                }
-            ],
-        },
-        {
-            id: 'STL1',
-            panorama: '/img/STL1.jpg',
-            name: 'GROUND_FLOOR',
-            links: [{ nodeId: 'FF39', position: { yaw: 0, pitch: 0 } },
-                
-            ],
-        },
-        {
-            id: 'GF18',
-            panorama: '/img/18.jpg',
-            name: 'GROUND_FLOOR',
-            links: [{ nodeId: 'GF19', position: { yaw: 0, pitch: 0 } }],
-        },
-        {
-            id: 'GF19',
-            panorama: '/img/19.jpg',
-            name: 'GROUND_FLOOR',
-            links: [{ nodeId: 'GF20', position: { yaw: 0, pitch: 0 } }],
-        },
-        {
-            id: 'GF20',
-            panorama: '/img/20.jpg',
-            name: 'GROUND_FLOOR',
-            links: [{ nodeId: 'GF21', position: { yaw: 0, pitch: 0 } }],
-        },
-        {
-            id: 'GF21',
-            panorama: '/img/21.jpg',
-            name: 'GROUND_FLOOR',
-            links: [{ nodeId: 'FF22', position: { yaw: 0, pitch: 0 } }],
-        },
-        {
-            id: 'FF22',
-            panorama: '/img/22.jpg',
-            name: 'FIRST_FLOOR',
-            links: [{ nodeId: 'FF23', position: { yaw: 5, pitch: 0 } }],
-        },
-        {
-            id: 'FF23',
-            panorama: '/img/23.jpg',
-            name: 'FIRST_FLOOR',
-            links: [{ nodeId: 'FF24', position: { yaw: 0, pitch: 0 } },],
-        },
-        
-        {
-            id: 'FF24',
-            panorama: '/img/24.jpg',
-            name: 'FIRST_FLOOR',
-            links: [{ nodeId: 'FF25', position: { yaw: 0, pitch: 0 } }],
-        },
-        {
-            id: 'FF25',
-            panorama: '/img/25.jpg',
-            name: 'FIRST_FLOOR',
-            links: [{ nodeId: 'FF26', position: { yaw: 0, pitch: 0 } }],
-        },
-        {
-            id: 'FF26',
-            panorama: '/img/26.jpg',
-            name: 'FIRST_FLOOR',
-            links: [{ nodeId: 'FF27', position: { yaw: 0, pitch: 0 } },
-            {
-                    nodeId: 'STC2',position: { yaw: -5, pitch: 0 }
-                }
-            ],
-        },
-        {
-            id: 'STC2',
-            panorama: '/img/STC_2.jpg',
-            name: 'GROUND_FLOOR',
-            links: [{ nodeId: 'SF43', position: { yaw: 0, pitch: 0 } }],
-        },
-        {
-            id: 'FF27',
-            panorama: '/img/27.jpg',
-            name: 'FIRST_FLOOR',
-            links: [{ nodeId: 'FF28', position: { yaw: 0, pitch: 0 } }],
-        },
-        {
-            id: 'FF28',
-            panorama: '/img/28.jpg',
-            name: 'FIRST_FLOOR',
-            links: [{ nodeId: 'FF30', position: { yaw: 0, pitch: 0 } }],
-        },
-        {
-            id: 'FF30',
-            panorama: '/img/30.jpg',
-            name: 'FIRST_FLOOR',
-            links: [{ nodeId: 'FF31', position: { yaw: 0, pitch: 0 } }],
-        },
-        {
-            id: 'FF31',
-            panorama: '/img/31.jpg',
-            name: 'FIRST_FLOOR',
-            links: [{ nodeId: 'FF32', position: { yaw: 5, pitch: 0 } }],
-        },
-        {
-            id: 'FF32',
-            panorama: '/img/32.jpg',
-            name: 'FIRST_FLOOR',
-            links: [{ nodeId: 'FF33', position: { yaw: 0, pitch: 0 } }],
-        },
-        {
-            id: 'FF33',
-            panorama: '/img/33.jpg',
-            name: 'FIRST_FLOOR',
-            links: [{ nodeId: 'FF34', position: { yaw: 0, pitch: 0 } }],
-        },
-        {
-            id: 'FF34',
-            panorama: '/img/34.jpg',
-            name: 'FIRST_FLOOR',
-            links: [{ nodeId: 'FF36', position: { yaw: 0, pitch: 0 } }],
-        },
-        {
-            id: 'FF36',
-            panorama: '/img/36.jpg',
-            name: 'FIRST_FLOOR',
-            links: [{ nodeId: 'FF37', position: { yaw: 0, pitch: 0 } }],
-        },
-        {
-            id: 'FF37',
-            panorama: '/img/37.jpg',
-            name: 'FIRST_FLOOR',
-            links: [{ nodeId: 'FF38', position: { yaw: 0, pitch: 0 } }],
-        },
-        {
-            id: 'FF38',
-            panorama: '/img/38.jpg',
-            name: 'FIRST_FLOOR',
-            links: [{ nodeId: 'FF39', position: { yaw: 0, pitch: 0 } }],
-        },
-        {
-            id: 'FF39',
-            panorama: '/img/39.jpg',
-            name: 'FIRST_FLOOR',
-            links: [{ nodeId: 'FF40', position: { yaw: 0, pitch: 0 } },
-                {
-                    nodeId: 'STL2',position: { yaw: -5, pitch: 0 }
-                }
-            ],
-        },
-        {
-            id: 'STL2',
-            panorama: '/img/STL2_1.jpg',
-            name: 'GROUND_FLOOR',
-            links: [{ nodeId: 'SF60', position: { yaw: 0, pitch: 0 } }],
-        },
-        {
-            id: 'FF40',
-            panorama: '/img/40.jpg',
-            name: 'FIRST_FLOOR',
-            links: [{ nodeId: 'FF41', position: { yaw: 0, pitch: 0 } }],
-        },
-        {
-            id: 'FF41',
-            panorama: '/img/41.jpg',
-            name: 'FIRST_FLOOR',
-            links: [{ nodeId: 'FF42', position: { yaw: 0, pitch: 0 } }],
-        },
-        {
-            id: 'FF42',
-            panorama: '/img/42.jpg',
-            name: 'FIRST_FLOOR',
-            links: [{ nodeId: 'SF43', position: { yaw: 0, pitch: 0 } }],
-        },
-        {
-            id: 'SF43',
-            panorama: '/img/43.jpg',
-            name: 'SECOND_FLOOR',
-            links: [{ nodeId: 'SF44', position: { yaw: 0, pitch: 0 } }],
-        },
-        {
-            id: 'SF44',
-            panorama: '/img/44.jpg',
-            name: 'SECOND_FLOOR',
-            links: [{ nodeId: 'SF45', position: { yaw: 0, pitch: 0 } }],
-        },
-        {
-            id: 'SF45',
-            panorama: '/img/45.jpg',
-            name: 'SECOND_FLOOR',
-            links: [{ nodeId: 'SF46', position: { yaw: 0, pitch: 0 } }],
-        },
-        {
-            id: 'SF46',
-            panorama: '/img/46.jpg',
-            name: 'SECOND_FLOOR',
-            links: [{ nodeId: 'SF47', position: { yaw: 0, pitch: 0 } }],
-        },
-        {
-            id: 'SF47',
-            panorama: '/img/47.jpg',
-            name: 'SECOND_FLOOR',
-            links: [{ nodeId: 'SF48', position: { yaw: 0, pitch: 0 } }],
-        },
-        {
-            id: 'SF48',
-            panorama: '/img/48.jpg',
-            name: 'SECOND_FLOOR',
-            links: [{ nodeId: 'SF49', position: { yaw: 0, pitch: 0 } }],
-        },
-        {
-            id: 'SF49',
-            panorama: '/img/49.jpg',
-            name: 'SECOND_FLOOR',
-            links: [{ nodeId: 'SF50', position: { yaw: 0, pitch: 0 } }],
-        },
-        {
-            id: 'SF50',
-            panorama: 'TAR/img/50.jpg',
-            name: 'SECOND_FLOOR',
-            links: [{ nodeId: 'SF51', position: { yaw: 0, pitch: 0 } }],
-        },
-        {
-            id: 'SF51',
-            panorama: '/img/51.jpg',
-            name: 'SECOND_FLOOR',
-            links: [{ nodeId: 'SF52', position: { yaw: 0, pitch: 0 } }],
-        },
-        {
-            id: 'SF52',
-            panorama: '/img/52.jpg',
-            name: 'SECOND_FLOOR',
-            links: [{ nodeId: 'SF53', position: { yaw: 0, pitch: 0 } }],
-        },
-        {
-            id: 'SF53',
-            panorama: '/img/53.jpg',
-            name: 'SECOND_FLOOR',
-            links: [{ nodeId: 'SF54', position: { yaw: 0, pitch: 0 } }],
-        },
-        {
-            id: 'SF54',
-            panorama: '/img/54.jpg',
-            name: 'SECOND_FLOOR',
-            links: [{ nodeId: 'SF55', position: { yaw: 0, pitch: 0 } }],
-        },
-        {
-            id: 'SF55',
-            panorama: '/img/55.jpg',
-            name: 'SECOND_FLOOR',
-            links: [{ nodeId: 'SF56', position: { yaw: 0, pitch: 0 } }],
-        },
-        {
-            id: 'SF56',
-            panorama: '/img/56.jpg',
-            name: 'SECOND_FLOOR',
-            links: [{ nodeId: 'SF57', position: { yaw: 0, pitch: 0 } }],
-        },
-        {
-            id: 'SF57',
-            panorama: '/img/57.jpg',
-            name: 'SECOND_FLOOR',
-            links: [{ nodeId: 'SF58', position: { yaw: 0, pitch: 0 } }],
-        },
-        {
-            id: 'SF58',
-            panorama: '/img/58.jpg',
-            name: 'SECOND_FLOOR',
-            links: [{ nodeId: 'SF59', position: { yaw: 0, pitch: 0 } }],
-        },
-        {
-            id: 'SF59',
-            panorama: '/img/59.jpg',
-            name: 'SECOND_FLOOR',
-            links: [{ nodeId: 'SF60', position: { yaw: 0, pitch: 0 } }],
-        },
-        {
-            id: 'SF60',
-            panorama: '/img/60.jpg',
-            name: 'SECOND_FLOOR',
-            links: [{ nodeId: 'SF61', position: { yaw: 0, pitch: 0 } }],
-        },
-        {
-            id: 'SF61',
-            panorama: '/img/61.jpg',
-            name: 'SECOND_FLOOR',
-            links: [{ nodeId: 'SF62', position: { yaw: 0, pitch: 0 } }],
-        },
-        {
-            id: 'SF62',
-            panorama: '/img/62.jpg',
-            name: 'SECOND_FLOOR',
-            links: [{ nodeId: 'SF63', position: { yaw: 0, pitch: 0 } }],
-        },
-        {
-            id: 'SF63',
-            panorama: '/img/63.jpg',
-            name: 'SECOND_FLOOR',
-            links: [{ nodeId: 'SF64', position: { yaw: 0, pitch: 0 } }],
-        },
-        {
-            id: 'SF64',
-            panorama: '/img/64.jpg',
-            name: 'SECOND_FLOOR',
-            links: [{ nodeId: 'SF65', position: { yaw: 0, pitch: 0 } }],
-        },
-        {
-            id: 'SF65',
-            panorama: '/img/65.jpg',
-            name: 'SECOND_FLOOR',
-            links: [{ nodeId: 'SF66', position: { yaw: 0, pitch: 0 } }],
-        },
-        {
-            id: 'SF66',
-            panorama: '/img/66.jpg',
-            name: 'SECOND_FLOOR',
-            links: [{ nodeId: 'SF67', position: { yaw: 0, pitch: 0 } }],
-        },
-        {
-            id: 'SF67',
-            panorama: '/img/67.jpg',
-            name: 'SECOND_FLOOR',
-            markers: [
-                {
-                    id: 'marker-2',
-                    element: document.querySelector('#custom-marker-element-depstar-thanks'),
-                    size: { width: 50, height: 50 },
-                    position: { yaw: -6, pitch: 0.3 },
-                },
-            ],
-            links: [{ nodeId: 'GF1', position: { yaw: 0, pitch: 0 } }],
+            //     updateMarker({ marker, position, viewerPosition, zoomLevel, viewerSize }) {
+            //         this.legend.innerText = `Params
+            // position: ${position.x}px x ${position.y}px
+            // viewerPosition: ${this.fmt.format(viewerPosition.yaw)}rad / ${this.fmt.format(viewerPosition.pitch)}rad
+            // zoomLevel: ${zoomLevel}%
+            // viewerSize: ${viewerSize.width}px x ${viewerSize.height}px
+            // `;
+            //         this.tooltip.classList.toggle('bottom', position.y < viewerSize.height / 3);
+            //     }
         }
-    ];
 
-    // Add scenes list toggle button
-    const scenesListButton = document.createElement('button');
-    scenesListButton.className = 'scenes-list-button';
-    scenesListButton.innerHTML = `
+
+        // Register the custom element
+        customElements.define('custom-marker', CustomMarkerElement);
+
+        const viewer = new Viewer({
+            container: document.querySelector('#viewer'),
+            panorama: '/DEPSTAR-1/img/1.webp',
+            loadingImg: baseUrl,
+            touchmoveTwoFingers: false,
+            defaultYaw: '0deg',
+            plugins: [
+                [VirtualTourPlugin, {
+                    //positionMode: 'gps',
+                    renderMode: '3d',
+                    transitionOptions: {
+                        fadeIn: true, // Disable fade-in for smoother transition
+                        rotation: true, // Enable rotation during transition
+                        showLoader: false,
+                        speed: "10rpm", // Adjust the speed of transition
+                        zoomTo: 0, // Set your desired zoom level here
+                    }
+                }],
+                MarkersPlugin,
+                [AutorotatePlugin, {
+                    autostartDelay: 5000,
+                    autostartOnIdle: true,
+                    autorotateSpeed: '1rpm',
+                }],
+                [GalleryPlugin, {
+                    visibleOnLoad: false,
+                    hideOnClick: true
+                }],
+            ],
+            navbar: [
+                'autorotate',
+                'gallery',
+                'move',
+                'caption',
+                'fullscreen',
+            ],
+        });
+
+        const virtualTour = viewer.getPlugin(VirtualTourPlugin);
+
+        // Define nodes array
+        const nodes = [
+            {
+                id: 'GF1',
+                panorama: '/DEPSTAR-1/img/1.webp',
+                thumbnail: '/DEPSTAR-1/img/1.webp',
+                name: 'Main Entrance',
+                map: { x: 200, y: 200 },
+                markers: [
+                    {
+                        id: 'marker-1',
+                        element: document.querySelector('#custom-marker-element-depstar-info'),
+                        size: { width: 50, height: 50 },
+                        position: { yaw: -0.8, pitch: 0 },
+                    },
+                ],
+                links: [
+                    { nodeId: 'GF2', position: { yaw: 0, pitch: 0 } },
+                ],
+            },
+            {
+                id: 'GF2',
+                panorama: '/DEPSTAR-1/img/2.webp',
+                name: 'GROUND_FLOOR',
+                links: [{ nodeId: 'GF2_1', position: { yaw: 0, pitch: 0 } }],
+            },
+            {
+                id: 'GF2_1',
+                panorama: '/DEPSTAR-1/img/20.webp',
+                name: 'GROUND_FLOOR',
+                links: [
+                    { nodeId: 'GF3', position: { yaw: 5, pitch: 0 } },
+                    { nodeId: 'GF21', position: { yaw: 0, pitch: 0 } }
+                ],
+            },
+            {
+                id: 'GF3',
+                panorama: '/DEPSTAR-1/img/3.webp',
+                name: 'GROUND_FLOOR',
+                links: [{ nodeId: 'GF4', position: { yaw: 0, pitch: 0 } },
+                { nodeId: 'SG1', position: { yaw: -5, pitch: 0 } }
+                ],
+            },
+            {
+                id: 'SG1',
+                panorama: '/DEPSTAR-1/img/SG1.webp',
+                thumbnail: '/DEPSTAR-1/img/SG1.webp',
+                name: 'Garden Staircase',
+                map: { x: 300, y: 150 },
+                links: [{ nodeId: 'SG2', position: { yaw: 0, pitch: 0 } }],
+            },
+            {
+                id: 'SG2',
+                panorama: '/DEPSTAR-1/img/SG2.webp',
+                name: 'GROUND_FLOOR',
+                links: [{ nodeId: 'SG3', position: { yaw: 0, pitch: 0 } }],
+            },
+            {
+                id: 'SG3',
+                panorama: '/DEPSTAR-1/img/SG3.webp',
+                name: 'GROUND_FLOOR',
+                links: [{ nodeId: 'GF20', position: { yaw: 0, pitch: 0 } }],
+            },
+            {
+                id: 'GF4',
+                panorama: '/DEPSTAR-1/img/4.webp',
+                thumbnail: '/DEPSTAR-1/img/4.webp',
+                name: 'Main Lobby',
+                map: { x: 400, y: 250 },
+                links: [{ nodeId: 'GF5', position: { yaw: 0, pitch: 0 } }],
+            },
+            {
+                id: 'GF5',
+                panorama: '/DEPSTAR-1/img/5.webp',
+                name: 'GROUND_FLOOR',
+                links: [{ nodeId: 'GF6', position: { yaw: 0, pitch: 0 } }],
+            },
+            {
+                id: 'GF6',
+                panorama: '/DEPSTAR-1/img/6.webp',
+                name: 'GROUND_FLOOR',
+                links: [{ nodeId: 'GF7', position: { yaw: 0, pitch: 0 } },
+                {
+                    nodeId: 'STC1', position: { yaw: -5, pitch: 0 }
+                }
+                ],
+            },
+            {
+                id: 'STC1',
+                panorama: '/DEPSTAR-1/img/STC1.webp',
+                name: 'GROUND_FLOOR',
+                links: [{ nodeId: 'FF26', position: { yaw: 0, pitch: 0 } }],
+            },
+            {
+                id: 'GF7',
+                panorama: '/DEPSTAR-1/img/7.webp',
+                name: 'GROUND_FLOOR',
+                links: [{ nodeId: 'GF8', position: { yaw: 0, pitch: 0 } }],
+            },
+            {
+                id: 'GF8',
+                panorama: '/DEPSTAR-1/img/8.webp',
+                name: 'GROUND_FLOOR',
+                links: [{ nodeId: 'GF9', position: { yaw: 0, pitch: 0 } }],
+            },
+            {
+                id: 'GF9',
+                panorama: '/DEPSTAR-1/img/9.webp',
+                name: 'GROUND_FLOOR',
+                links: [{ nodeId: 'GF10', position: { yaw: 0, pitch: 0 } }],
+            },
+            {
+                id: 'GF10',
+                panorama: '/DEPSTAR-1/img/10.webp',
+                name: 'GROUND_FLOOR',
+                links: [{ nodeId: 'GF11', position: { yaw: 0, pitch: 0 } },
+
+                ],
+            },
+            {
+                id: 'GF11',
+                panorama: '/DEPSTAR-1/img/11.webp',
+                name: 'GROUND_FLOOR',
+                links: [{ nodeId: 'GF12', position: { yaw: 0, pitch: 0 } },
+                { nodeId: 'STB_1', position: { yaw: -5, pitch: 0 } },
+                ],
+            },
+            {
+                id: 'STB_1',
+                panorama: '/DEPSTAR-1/img/STB_1.webp',
+                name: 'GROUND_FLOOR',
+                links: [{ nodeId: 'STB_2', position: { yaw: 0, pitch: 0 } }],
+            },
+            {
+                id: 'STB_2',
+                panorama: '/DEPSTAR-1/img/STB_2.webp',
+                name: 'GROUND_FLOOR',
+                links: [{ nodeId: 'SF49', position: { yaw: 0, pitch: 0 } }],
+            },
+            {
+                id: 'GF12',
+                panorama: '/DEPSTAR-1/img/12.webp',
+                name: 'GROUND_FLOOR',
+                links: [{ nodeId: 'GF13', position: { yaw: 0, pitch: 0 } }],
+            },
+            {
+                id: 'GF13',
+                panorama: '/DEPSTAR-1/img/13.webp',
+                name: 'GROUND_FLOOR',
+                links: [{ nodeId: 'GF14', position: { yaw: 0, pitch: 0 } }],
+            },
+            {
+                id: 'GF14',
+                panorama: '/DEPSTAR-1/img/14.webp',
+                name: 'GROUND_FLOOR',
+                links: [{ nodeId: 'GF15', position: { yaw: 0, pitch: 0 } }],
+            },
+            {
+                id: 'GF15',
+                panorama: '/DEPSTAR-1/img/15.webp',
+                name: 'GROUND_FLOOR',
+                links: [{ nodeId: 'GF16', position: { yaw: 0, pitch: 0 } }],
+            },
+            {
+                id: 'GF16',
+                panorama: '/DEPSTAR-1/img/16.webp',
+                name: 'GROUND_FLOOR',
+                links: [{ nodeId: 'GF17', position: { yaw: 0, pitch: 0 } }],
+            },
+            {
+                id: 'GF17',
+                panorama: '/DEPSTAR-1/img/17.webp',
+                name: 'GROUND_FLOOR',
+                links: [{ nodeId: 'GF18', position: { yaw: 0, pitch: 0 } },
+                {
+                    nodeId: 'STL1', position: { yaw: -5, pitch: 0 }
+                }
+                ],
+            },
+            {
+                id: 'STL1',
+                panorama: '/DEPSTAR-1/img/STL1.webp',
+                name: 'GROUND_FLOOR',
+                links: [{ nodeId: 'FF39', position: { yaw: 0, pitch: 0 } },
+
+                ],
+            },
+            {
+                id: 'GF18',
+                panorama: '/DEPSTAR-1/img/18.webp',
+                name: 'GROUND_FLOOR',
+                links: [{ nodeId: 'GF19', position: { yaw: 0, pitch: 0 } }],
+            },
+            {
+                id: 'GF19',
+                panorama: '/DEPSTAR-1/img/19.webp',
+                name: 'GROUND_FLOOR',
+                links: [{ nodeId: 'GF20', position: { yaw: 0, pitch: 0 } }],
+            },
+            {
+                id: 'GF20',
+                panorama: '/DEPSTAR-1/img/20.webp',
+                name: 'GROUND_FLOOR',
+                links: [{ nodeId: 'GF21', position: { yaw: 0, pitch: 0 } }],
+            },
+            {
+                id: 'GF21',
+                panorama: '/DEPSTAR-1/img/21.webp',
+                name: 'GROUND_FLOOR',
+                links: [{ nodeId: 'FF22', position: { yaw: 0, pitch: 0 } }],
+            },
+            {
+                id: 'FF22',
+                panorama: '/DEPSTAR-1/img/22.webp',
+                thumbnail: '/DEPSTAR-1/img/22.webp',
+                name: 'Classrooms',
+                links: [{ nodeId: 'FF23', position: { yaw: 5, pitch: 0 } }],
+            },
+            {
+                id: 'FF23',
+                panorama: '/DEPSTAR-1/img/23.webp',
+                name: 'FIRST_FLOOR',
+                links: [{ nodeId: 'FF24', position: { yaw: 0, pitch: 0 } },],
+            },
+            {
+                id: 'FF24',
+                panorama: '/DEPSTAR-1/img/24.webp',
+                name: 'FIRST_FLOOR',
+                links: [{ nodeId: 'FF25', position: { yaw: 0, pitch: 0 } }],
+            },
+            {
+                id: 'FF25',
+                panorama: '/DEPSTAR-1/img/25.webp',
+                name: 'FIRST_FLOOR',
+                links: [{ nodeId: 'FF26', position: { yaw: 0, pitch: 0 } }],
+            },
+            {
+                id: 'FF26',
+                panorama: '/DEPSTAR-1/img/26.webp',
+                name: 'FIRST_FLOOR',
+                links: [{ nodeId: 'FF27', position: { yaw: 0, pitch: 0 } },
+                {
+                    nodeId: 'STC2', position: { yaw: -5, pitch: 0 }
+                }
+                ],
+            },
+            {
+                id: 'STC2',
+                panorama: '/DEPSTAR-1/img/STC_2.webp',
+                name: 'GROUND_FLOOR',
+                links: [{ nodeId: 'SF43', position: { yaw: 0, pitch: 0 } }],
+            },
+            {
+                id: 'FF27',
+                panorama: '/DEPSTAR-1/img/27.webp',
+                name: 'FIRST_FLOOR',
+                links: [{ nodeId: 'FF28', position: { yaw: 0, pitch: 0 } }],
+            },
+            {
+                id: 'FF28',
+                panorama: '/DEPSTAR-1/img/28.webp',
+                name: 'FIRST_FLOOR',
+                links: [{ nodeId: 'FF30', position: { yaw: 0, pitch: 0 } }],
+            },
+            {
+                id: 'FF30',
+                panorama: '/DEPSTAR-1/img/30.webp',
+                name: 'FIRST_FLOOR',
+                links: [{ nodeId: 'FF31', position: { yaw: 0, pitch: 0 } }],
+            },
+            {
+                id: 'FF31',
+                panorama: '/DEPSTAR-1/img/31.webp',
+                name: 'FIRST_FLOOR',
+                links: [{ nodeId: 'FF32', position: { yaw: 5, pitch: 0 } }],
+            },
+            {
+                id: 'FF32',
+                panorama: '/DEPSTAR-1/img/32.webp',
+                name: 'FIRST_FLOOR',
+                links: [{ nodeId: 'FF33', position: { yaw: 0, pitch: 0 } }],
+            },
+            {
+                id: 'FF33',
+                panorama: '/DEPSTAR-1/img/33.webp',
+                name: 'FIRST_FLOOR',
+                links: [{ nodeId: 'FF34', position: { yaw: 0, pitch: 0 } }],
+            },
+            {
+                id: 'FF34',
+                panorama: '/DEPSTAR-1/img/34.webp',
+                thumbnail: '/DEPSTAR-1/img/34.webp',
+                name: 'Seminar Hall 1',
+                links: [{ nodeId: 'FF36', position: { yaw: 0, pitch: 0 } }],
+            },
+            {
+                id: 'FF36',
+                panorama: '/DEPSTAR-1/img/36.webp',
+                thumbnail: '/DEPSTAR-1/img/36.webp',
+                name: 'Seminar Hall 2',
+                links: [{ nodeId: 'FF37', position: { yaw: 0, pitch: 0 } }],
+            },
+            {
+                id: 'FF37',
+                panorama: '/DEPSTAR-1/img/37.webp',
+                name: 'FIRST_FLOOR',
+                map: { x: 225, y: 205 },
+                markers: [
+                    {
+                        id: 'marker-class',
+                        element: document.querySelector('#custom-marker-element-classroom'),
+                        size: { width: 50, height: 50 },
+                        position: { yaw: -0.8, pitch: 0.1 },
+                    },
+                ],
+                links: [{ nodeId: 'FF38', position: { yaw: 0, pitch: 0 } }],
+            },
+            {
+                id: 'FF38',
+                panorama: '/DEPSTAR-1/img/38.webp',
+                name: 'FIRST_FLOOR',
+                links: [{ nodeId: 'FF39', position: { yaw: 0, pitch: 0 } }],
+            },
+            {
+                id: 'FF39',
+                panorama: '/DEPSTAR-1/img/39.webp',
+                name: 'FIRST_FLOOR',
+                links: [{ nodeId: 'FF40', position: { yaw: 0, pitch: 0 } },
+                {
+                    nodeId: 'STL2', position: { yaw: -5, pitch: 0 }
+                }
+                ],
+            },
+            {
+                id: 'STL2',
+                panorama: '/DEPSTAR-1/img/STL2_1.webp',
+                name: 'GROUND_FLOOR',
+                links: [{ nodeId: 'SF60', position: { yaw: 0, pitch: 0 } }],
+            },
+            {
+                id: 'FF40',
+                panorama: '/DEPSTAR-1/img/40.webp',
+                name: 'FIRST_FLOOR',
+                links: [{ nodeId: 'FF41', position: { yaw: 0, pitch: 0 } }],
+            },
+            {
+                id: 'FF41',
+                panorama: '/DEPSTAR-1/img/41.webp',
+                name: 'FIRST_FLOOR',
+                links: [{ nodeId: 'FF42', position: { yaw: 0, pitch: 0 } }],
+            },
+            {
+                id: 'FF42',
+                panorama: '/DEPSTAR-1/img/42.webp',
+                name: 'FIRST_FLOOR',
+                links: [{ nodeId: 'SF43', position: { yaw: 0, pitch: 0 } }],
+            },
+            {
+                id: 'SF43',
+                panorama: '/DEPSTAR-1/img/43.webp',
+                thumbnail: '/DEPSTAR-1/img/43.webp',
+                name: 'Sophos Security Lab',
+                map: { x: 595, y: 205 },
+                markers: [
+                    {
+                        id: 'marker-lab',
+                        element: document.querySelector('#custom-marker-element-network-lab'),
+                        size: { width: 50, height: 50 },
+                        position: { yaw: 1.5, pitch: -0.1 },
+                    },
+                ],
+                links: [{ nodeId: 'SF44', position: { yaw: 0, pitch: 0 } }],
+            },
+            {
+                id: 'SF44',
+                panorama: '/DEPSTAR-1/img/44.webp',
+                name: 'SECOND_FLOOR',
+                links: [{ nodeId: 'SF45', position: { yaw: 0, pitch: 0 } }],
+            },
+            {
+                id: 'SF45',
+                panorama: '/DEPSTAR-1/img/45.webp',
+                name: 'SECOND_FLOOR',
+                links: [{ nodeId: 'SF46', position: { yaw: 0, pitch: 0 } }],
+            },
+            {
+                id: 'SF46',
+                panorama: '/DEPSTAR-1/img/46.webp',
+                thumbnail: '/DEPSTAR-1/img/46.webp',
+                name: 'Advanced Mac Lab',
+                markers: [
+                    {
+                        id: 'marker-mac',
+                        element: document.querySelector('#custom-marker-element-mac-lab'),
+                        size: { width: 50, height: 50 },
+                        position: { yaw: 1.0, pitch: -0.1 },
+                    },
+                ],
+                links: [{ nodeId: 'SF47', position: { yaw: 0, pitch: 0 } }],
+            },
+            {
+                id: 'SF47',
+                panorama: '/DEPSTAR-1/img/47.webp',
+                name: 'SECOND_FLOOR',
+                links: [{ nodeId: 'SF48', position: { yaw: 0, pitch: 0 } }],
+            },
+            {
+                id: 'SF48',
+                panorama: '/DEPSTAR-1/img/48.webp',
+                name: 'SECOND_FLOOR',
+                links: [{ nodeId: 'SF49', position: { yaw: 0, pitch: 0 } }],
+            },
+            {
+                id: 'SF49',
+                panorama: '/DEPSTAR-1/img/49.webp',
+                name: 'SECOND_FLOOR',
+                links: [{ nodeId: 'SF50', position: { yaw: 0, pitch: 0 } }],
+            },
+            {
+                id: 'SF50',
+                panorama: '/DEPSTAR-1/img/50.webp',
+                thumbnail: '/DEPSTAR-1/img/50.webp',
+                name: 'Seminar Hall 2',
+                // markers: [
+                //     {
+                //         id: 'marker-arvr',
+                //         element: document.querySelector('#custom-marker-element-arvr-lab'),
+                //         size: { width: 50, height: 50 },
+                //         position: { yaw: -1.0, pitch: -0.2 },
+                //     },
+                // ],
+                links: [{ nodeId: 'SF51', position: { yaw: 0, pitch: 0 } }],
+            },
+            {
+                id: 'SF51',
+                panorama: '/DEPSTAR-1/img/51.webp',
+                name: 'SECOND_FLOOR',
+                links: [{ nodeId: 'SF52', position: { yaw: 0, pitch: 0 } }],
+            },
+            {
+                id: 'SF52',
+                panorama: '/DEPSTAR-1/img/52.webp',
+                name: 'SECOND_FLOOR',
+                links: [{ nodeId: 'SF53', position: { yaw: 0, pitch: 0 } }],
+            },
+            {
+                id: 'SF53',
+                panorama: '/DEPSTAR-1/img/53.webp',
+                name: 'SECOND_FLOOR',
+                links: [{ nodeId: 'SF54', position: { yaw: 0, pitch: 0 } }],
+            },
+            {
+                id: 'SF54',
+                panorama: '/DEPSTAR-1/img/54.webp',
+                name: 'SECOND_FLOOR',
+                links: [{ nodeId: 'SF55', position: { yaw: 0, pitch: 0 } }],
+            },
+            {
+                id: 'SF55',
+                panorama: '/DEPSTAR-1/img/55.webp',
+                thumbnail: '/DEPSTAR-1/img/55.webp',
+                name: 'AI/ML Research Lab',
+                markers: [
+                    {
+                        id: 'marker-aiml',
+                        element: document.querySelector('#custom-marker-element-aiml-lab'),
+                        size: { width: 50, height: 50 },
+                        position: { yaw: 0.5, pitch: -0.1 },
+                    },
+                ],
+                links: [{ nodeId: 'SF56', position: { yaw: 0, pitch: 0 } }],
+            },
+            {
+                id: 'SF56',
+                panorama: '/DEPSTAR-1/img/56.webp',
+                name: 'SECOND_FLOOR',
+                links: [{ nodeId: 'SF57', position: { yaw: 0, pitch: 0 } }],
+            },
+            {
+                id: 'SF57',
+                panorama: '/DEPSTAR-1/img/57.webp',
+                name: 'SECOND_FLOOR',
+                links: [{ nodeId: 'SF58', position: { yaw: 0, pitch: 0 } }],
+            },
+            {
+                id: 'SF58',
+                panorama: '/DEPSTAR-1/img/58.webp',
+                name: 'SECOND_FLOOR',
+                links: [{ nodeId: 'SF59', position: { yaw: 0, pitch: 0 } }],
+            },
+            {
+                id: 'SF59',
+                panorama: '/DEPSTAR-1/img/59.webp',
+                name: 'SECOND_FLOOR',
+                links: [{ nodeId: 'SF60', position: { yaw: 0, pitch: 0 } }],
+            },
+            {
+                id: 'SF60',
+                panorama: '/DEPSTAR-1/img/60.webp',
+                name: 'SECOND_FLOOR',
+                links: [{ nodeId: 'SF61', position: { yaw: 0, pitch: 0 } }],
+            },
+            {
+                id: 'SF61',
+                panorama: '/DEPSTAR-1/img/61.webp',
+                name: 'SECOND_FLOOR',
+                links: [{ nodeId: 'SF62', position: { yaw: 0, pitch: 0 } }],
+            },
+            {
+                id: 'SF62',
+                panorama: '/DEPSTAR-1/img/62.webp',
+                name: 'SECOND_FLOOR',
+                links: [{ nodeId: 'SF63', position: { yaw: 0, pitch: 0 } }],
+            },
+            {
+                id: 'SF63',
+                panorama: '/DEPSTAR-1/img/63.webp',
+                name: 'SECOND_FLOOR',
+                links: [{ nodeId: 'SF64', position: { yaw: 0, pitch: 0 } }],
+            },
+            {
+                id: 'SF64',
+                panorama: '/DEPSTAR-1/img/64.webp',
+                name: 'SECOND_FLOOR',
+                links: [{ nodeId: 'SF65', position: { yaw: 0, pitch: 0 } }],
+            },
+            {
+                id: 'SF65',
+                panorama: '/DEPSTAR-1/img/65.webp',
+                name: 'SECOND_FLOOR',
+                links: [{ nodeId: 'SF66', position: { yaw: 0, pitch: 0 } }],
+            },
+            {
+                id: 'SF66',
+                panorama: '/DEPSTAR-1/img/66.webp',
+                name: 'SECOND_FLOOR',
+                links: [{ nodeId: 'SF67', position: { yaw: 0, pitch: 0 } }],
+            },
+            {
+                id: 'SF67',
+                panorama: 'img/67.webp',
+                name: 'SECOND_FLOOR',
+                markers: [
+                    {
+                        id: 'marker-2',
+                        element: document.querySelector('#custom-marker-element-depstar-thanks'),
+                        size: { width: 50, height: 50 },
+                        position: { yaw: -6, pitch: 0.3 },
+                    },
+                ],
+                links: [{ nodeId: 'GF1', position: { yaw: 0, pitch: 0 } }],
+            }
+        ];
+
+        // Add scenes list toggle button
+        const scenesListButton = document.createElement('button');
+        scenesListButton.className = 'scenes-list-button';
+        scenesListButton.innerHTML = `
         <svg viewBox="0 0 24 24" width="24" height="24">
             <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" fill="currentColor"/>
         </svg>
     `;
-    document.body.appendChild(scenesListButton);
+        document.body.appendChild(scenesListButton);
 
-    // Add styles for the scenes list
-    const style = document.createElement('style');
-    style.textContent = `
+        // Add styles for the scenes list
+        const style = document.createElement('style');
+        style.textContent = `
         .scenes-list-button {
             position: fixed;
             top: 20px;
@@ -791,83 +1055,134 @@
             font-weight: bold;
         }
     `;
-    document.head.appendChild(style);
+        document.head.appendChild(style);
 
-    // Create scenes list container
-    const scenesList = document.createElement('div');
-    scenesList.className = 'scenes-list';
-    document.body.appendChild(scenesList);
+        // Create scenes list container
+        const scenesList = document.createElement('div');
+        scenesList.className = 'scenes-list';
+        document.body.appendChild(scenesList);
 
-    // Update scenes list when nodes are set
-    const updateScenesList = () => {
-        console.log('Updating scenes list...');
-        scenesList.innerHTML = '';
-        const currentNode = virtualTour.getCurrentNode();
+        // Update scenes list when nodes are set
+        const updateScenesList = () => {
+            console.log('Updating scenes list...');
+            scenesList.innerHTML = '';
+            const currentNode = virtualTour.getCurrentNode();
 
-        if (!nodes || nodes.length === 0) {
-            console.log('No nodes available');
-            return;
-        }
+            if (!nodes || nodes.length === 0) {
+                console.log('No nodes available');
+                return;
+            }
 
-        console.log('Found nodes:', nodes);
-        nodes.forEach(node => {
-            const sceneItem = document.createElement('div');
-            sceneItem.className = `scene-item ${node.id === currentNode?.id ? 'active' : ''}`;
-            sceneItem.textContent = node.id;
-            sceneItem.addEventListener('click', () => {
-                virtualTour.setCurrentNode(node.id);
-                scenesList.classList.remove('show');
+            console.log('Found nodes:', nodes);
+            nodes.forEach(node => {
+                const sceneItem = document.createElement('div');
+                sceneItem.className = `scene-item ${node.id === currentNode?.id ? 'active' : ''}`;
+                sceneItem.textContent = node.id;
+                sceneItem.addEventListener('click', () => {
+                    virtualTour.setCurrentNode(node.id);
+                    scenesList.classList.remove('show');
+                });
+                scenesList.appendChild(sceneItem);
             });
-            scenesList.appendChild(sceneItem);
+        };
+
+        // Toggle scenes list visibility
+        scenesListButton.addEventListener('click', () => {
+            scenesList.classList.toggle('show');
+            if (scenesList.classList.contains('show')) {
+                updateScenesList();
+            }
         });
-    };
 
-    // Toggle scenes list visibility
-    scenesListButton.addEventListener('click', () => {
-        scenesList.classList.toggle('show');
-        if (scenesList.classList.contains('show')) {
-            updateScenesList();
+        // Update scenes list when nodes change
+        viewer.addEventListener('node-changed', updateScenesList);
+
+        // ── Start tour at a chosen scene ─────────────────────
+        function startTour(sceneId) {
+            const landing = document.getElementById('landing-screen');
+            const backBtn = document.getElementById('back-to-menu-btn');
+            landing.classList.add('hiding');
+            setTimeout(() => {
+                landing.style.display = 'none';
+                backBtn.style.display = 'flex';
+            }, 420);
+            virtualTour.setNodes(nodes, sceneId).then(() => {
+                updateScenesList();
+            }).catch(err => console.error('Tour error:', err));
         }
-    });
 
-    // Update scenes list when nodes change
-    viewer.addEventListener('node-changed', updateScenesList);
+        // Landing card clicks
+        document.querySelectorAll('.tour-card').forEach(card => {
+            card.addEventListener('click', () => {
+                if (card.id === 'btn-computer-labs') {
+                    // Open labs sub-menu
+                    document.getElementById('landing-main-view').style.display = 'none';
+                    document.getElementById('landing-labs-view').style.display = 'grid';
+                } else if (card.id === 'btn-seminar-halls') {
+                    // Open seminars sub-menu
+                    document.getElementById('landing-main-view').style.display = 'none';
+                    document.getElementById('landing-seminars-view').style.display = 'grid';
+                } else if (card.dataset.scene) {
+                    // Start tour for scene
+                    startTour(card.dataset.scene);
+                }
+            });
+        });
 
-    // Set nodes and wait for them to be loaded
-    virtualTour.setNodes(nodes, 'GF1').then(() => {
-        // Initial update of scenes list after nodes are loaded
-        updateScenesList();
-    }).catch(error => {
-        console.error('Error setting nodes:', error);
-    });
+        // Sub-menu back buttons
+        const backToCatBtn = document.getElementById('btn-back-to-categories');
+        if (backToCatBtn) {
+            backToCatBtn.addEventListener('click', () => {
+                document.getElementById('landing-labs-view').style.display = 'none';
+                document.getElementById('landing-main-view').style.display = 'grid';
+            });
+        }
 
-    viewer.addEventListener('click', ({ data }) => {
-    const { yaw, pitch, rightclick } = data;
-    const currentNode = virtualTour.getCurrentNode();
-    
-    console.log(`${rightclick ? 'Right-clicked' : 'Clicked'} at:`);
-    console.log(`Yaw: ${yaw.toFixed(2)}°`);
-    console.log(`Pitch: ${pitch.toFixed(2)}°`);
-    
-    if (currentNode && currentNode.gps) {
-        const [currentLongitude, currentLatitude, currentAltitude] = currentNode.gps;
-        console.log(`Current Node GPS Coordinates: Longitude: ${currentLongitude}, Latitude: ${currentLatitude}, Altitude: ${currentAltitude}`);
-        
-        // Approximate GPS changes based on yaw and pitch
-        const deltaLongitude = yaw * 0.1; // Adjust 0.1 to a more suitable scale
-        const deltaLatitude = pitch * 0.1; // Adjust 0.1 to a more suitable scale
-        
-        // Calculate new GPS coordinates based on click
-        const newLongitude = currentLongitude + deltaLongitude;
-        const newLatitude = currentLatitude + deltaLatitude;
-        
-        console.log(`Estimated Click GPS Coordinates: Longitude: ${newLongitude.toFixed(6)}, Latitude: ${newLatitude.toFixed(6)}, Altitude: ${currentAltitude}`);
-    } else {
-        console.log('No GPS data for this node.');
-    }
-});
+        const backToCatSeminarBtn = document.getElementById('btn-back-to-categories-seminar');
+        if (backToCatSeminarBtn) {
+            backToCatSeminarBtn.addEventListener('click', () => {
+                document.getElementById('landing-seminars-view').style.display = 'none';
+                document.getElementById('landing-main-view').style.display = 'grid';
+            });
+        }
 
-    // viewer.addEventListener('click', ({ data }) => {
-    //     console.log(`${data.rightclick ? 'right ' : ''}clicked at yaw: ${data.yaw} pitch: ${data.pitch}`);
-    // });
-</script>
+        // Back to menu
+        document.getElementById('back-to-menu-btn').addEventListener('click', () => {
+            const landing = document.getElementById('landing-screen');
+            const backBtn = document.getElementById('back-to-menu-btn');
+            landing.style.display = 'flex';
+            landing.classList.remove('hiding');
+            backBtn.style.display = 'none';
+        });
+
+
+        viewer.addEventListener('click', ({ data }) => {
+            const { yaw, pitch, rightclick } = data;
+            const currentNode = virtualTour.getCurrentNode();
+
+            console.log(`${rightclick ? 'Right-clicked' : 'Clicked'} at:`);
+            console.log(`Yaw: ${yaw.toFixed(2)}°`);
+            console.log(`Pitch: ${pitch.toFixed(2)}°`);
+
+            if (currentNode && currentNode.gps) {
+                const [currentLongitude, currentLatitude, currentAltitude] = currentNode.gps;
+                console.log(`Current Node GPS Coordinates: Longitude: ${currentLongitude}, Latitude: ${currentLatitude}, Altitude: ${currentAltitude}`);
+
+                // Approximate GPS changes based on yaw and pitch
+                const deltaLongitude = yaw * 0.1; // Adjust 0.1 to a more suitable scale
+                const deltaLatitude = pitch * 0.1; // Adjust 0.1 to a more suitable scale
+
+                // Calculate new GPS coordinates based on click
+                const newLongitude = currentLongitude + deltaLongitude;
+                const newLatitude = currentLatitude + deltaLatitude;
+
+                console.log(`Estimated Click GPS Coordinates: Longitude: ${newLongitude.toFixed(6)}, Latitude: ${newLatitude.toFixed(6)}, Altitude: ${currentAltitude}`);
+            } else {
+                console.log('No GPS data for this node.');
+            }
+        });
+
+        // viewer.addEventListener('click', ({ data }) => {
+        //     console.log(`${data.rightclick ? 'right ' : ''}clicked at yaw: ${data.yaw} pitch: ${data.pitch}`);
+        // });
+    </script>
