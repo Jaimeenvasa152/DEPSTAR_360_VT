@@ -5,9 +5,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&display=swap');
 
 
-*, *::before, *::after { box-sizing: border-box; }
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
 
-html, body, #viewer {
+html,
+body,
+#viewer {
     width: 100%;
     height: 100%;
     margin: 0;
@@ -15,7 +21,9 @@ html, body, #viewer {
     font-family: 'Inter', sans-serif;
 }
 
-.psv-markers-svg-container { z-index: 31; }
+.psv-markers-svg-container {
+    z-index: 31;
+}
 
 /* ── LANDING SCREEN ─────────────────────────────── */
 #landing-screen {
@@ -50,22 +58,31 @@ html, body, #viewer {
     max-width: 1080px;
     margin: auto;
     text-align: center;
-    animation: landingIn .8s cubic-bezier(.16,1,.3,1) both;
+    animation: landingIn .8s cubic-bezier(.16, 1, .3, 1) both;
 }
 
 @keyframes landingIn {
-    from { opacity:0; transform:translateY(28px); }
-    to   { opacity:1; transform:translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(28px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* header */
-.landing-header { margin-bottom: 40px; }
+.landing-header {
+    margin-bottom: 40px;
+}
 
 .institute-badge {
     display: inline-block;
     padding: 5px 16px;
-    background: rgba(245,158,11,.12);
-    border: 1px solid rgba(245,158,11,.35);
+    background: rgba(245, 158, 11, .12);
+    border: 1px solid rgba(245, 158, 11, .35);
     border-radius: 50px;
     color: #f59e0b;
     font-size: 11px;
@@ -78,7 +95,8 @@ html, body, #viewer {
 .institute-logo {
     display: block;
     max-width: 100%;
-    width: 500px; /* target generic size */
+    width: 500px;
+    /* target generic size */
     height: auto;
     max-height: 120px;
     margin: 0 auto 15px auto;
@@ -87,33 +105,33 @@ html, body, #viewer {
 
 .landing-title {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: clamp(52px,10vw,96px);
+    font-size: clamp(52px, 10vw, 96px);
     font-weight: 800;
     margin: 0 0 12px;
     letter-spacing: -3px;
     line-height: 1;
-    background: linear-gradient(135deg,#fff 0%,#c7d2fe 55%,#818cf8 100%);
+    background: linear-gradient(135deg, #fff 0%, #c7d2fe 55%, #818cf8 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
 
 .landing-subtitle {
-    font-size: clamp(15px,2.5vw,21px);
-    color: rgba(255,255,255,.6);
+    font-size: clamp(15px, 2.5vw, 21px);
+    color: rgba(255, 255, 255, .6);
     margin: 0 0 8px;
 }
 
 .landing-desc {
     font-size: 12.5px;
-    color: rgba(255,255,255,.3);
+    color: rgba(255, 255, 255, .3);
     letter-spacing: .4px;
 }
 
 .choose-label {
     font-size: 11px;
     font-weight: 600;
-    color: rgba(255,255,255,.3);
+    color: rgba(255, 255, 255, .3);
     text-transform: uppercase;
     letter-spacing: 2.5px;
     margin: 0 0 18px;
@@ -122,13 +140,22 @@ html, body, #viewer {
 /* grid */
 .tour-grid {
     display: grid;
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 14px;
     margin-bottom: 24px;
 }
 
-@media (max-width:860px)  { .tour-grid { grid-template-columns: repeat(2,1fr); } }
-@media (max-width:500px)  { .tour-grid { grid-template-columns: 1fr; } }
+@media (max-width:860px) {
+    .tour-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width:500px) {
+    .tour-grid {
+        grid-template-columns: 1fr;
+    }
+}
 
 /* cards */
 .tour-card {
@@ -139,32 +166,56 @@ html, body, #viewer {
     padding: 24px;
     cursor: pointer;
     text-align: left;
-    transition: all .35s cubic-bezier(.34,1.56,.64,1);
+    transition: all .35s cubic-bezier(.34, 1.56, .64, 1);
     backdrop-filter: blur(24px) saturate(150%);
     -webkit-backdrop-filter: blur(24px) saturate(150%);
     overflow: hidden;
     opacity: 0;
-    animation: cardIn .5s cubic-bezier(.16,1,.3,1) both;
+    animation: cardIn .5s cubic-bezier(.16, 1, .3, 1) both;
 }
 
-.tour-card:nth-child(1){animation-delay:.12s}
-.tour-card:nth-child(2){animation-delay:.17s}
-.tour-card:nth-child(3){animation-delay:.22s}
-.tour-card:nth-child(4){animation-delay:.27s}
-.tour-card:nth-child(5){animation-delay:.32s}
-.tour-card:nth-child(6){animation-delay:.37s}
+.tour-card:nth-child(1) {
+    animation-delay: .12s
+}
+
+.tour-card:nth-child(2) {
+    animation-delay: .17s
+}
+
+.tour-card:nth-child(3) {
+    animation-delay: .22s
+}
+
+.tour-card:nth-child(4) {
+    animation-delay: .27s
+}
+
+.tour-card:nth-child(5) {
+    animation-delay: .32s
+}
+
+.tour-card:nth-child(6) {
+    animation-delay: .37s
+}
 
 @keyframes cardIn {
-    from { opacity:0; transform:translateY(16px); }
-    to   { opacity:1; transform:translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .tour-card::before {
-    content:'';
-    position:absolute;
-    inset:0;
-    background: radial-gradient(circle at top left,rgba(165,180,252,.06) 0%,transparent 65%);
-    opacity:0;
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top left, rgba(165, 180, 252, .06) 0%, transparent 65%);
+    opacity: 0;
     transition: opacity .3s;
 }
 
@@ -174,77 +225,100 @@ html, body, #viewer {
     border-color: rgba(255, 255, 255, 0.3);
     box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
-.tour-card:hover::before { opacity:1; }
-.tour-card:active { transform: translateY(-2px) scale(1.006); }
+
+.tour-card:hover::before {
+    opacity: 1;
+}
+
+.tour-card:active {
+    transform: translateY(-2px) scale(1.006);
+}
 
 .tour-card.featured {
-    background: linear-gradient(135deg,rgba(99,102,241,.16) 0%,rgba(67,56,202,.08) 100%);
-    border-color: rgba(99,102,241,.35);
-}
-.tour-card.featured:hover {
-    border-color: rgba(129,140,248,.6);
-    box-shadow: 0 24px 60px rgba(99,102,241,.25);
+    background: linear-gradient(135deg, rgba(99, 102, 241, .16) 0%, rgba(67, 56, 202, .08) 100%);
+    border-color: rgba(99, 102, 241, .35);
 }
 
-.card-icon { font-size:30px; margin-bottom:13px; display:block; line-height:1; }
+.tour-card.featured:hover {
+    border-color: rgba(129, 140, 248, .6);
+    box-shadow: 0 24px 60px rgba(99, 102, 241, .25);
+}
+
+.card-icon {
+    font-size: 30px;
+    margin-bottom: 13px;
+    display: block;
+    line-height: 1;
+}
 
 .card-body h3 {
-    font-family:'Space Grotesk',sans-serif;
-    font-size:15.5px;
-    font-weight:700;
-    color:#fff;
-    margin:0 0 5px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 15.5px;
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 5px;
 }
+
 .card-body p {
-    font-size:12.5px;
-    color:rgba(255,255,255,.42);
-    margin:0;
-    line-height:1.55;
+    font-size: 12.5px;
+    color: rgba(255, 255, 255, .42);
+    margin: 0;
+    justify-content: left;
+    line-height: 1.55;
 }
 
 .card-footer {
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    margin-top:18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 18px;
 }
 
 .card-floor-badge {
-    padding:3px 10px;
-    background:rgba(255,255,255,.07);
-    border-radius:50px;
-    font-size:10px;
-    font-weight:600;
-    color:rgba(255,255,255,.4);
-    letter-spacing:.5px;
-    text-transform:uppercase;
+    padding: 3px 10px;
+    background: rgba(255, 255, 255, .07);
+    border-radius: 50px;
+    font-size: 10px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, .4);
+    letter-spacing: .5px;
+    text-transform: uppercase;
 }
+
 .tour-card.featured .card-floor-badge {
-    background:rgba(99,102,241,.2);
-    color:#a5b4fc;
+    background: rgba(99, 102, 241, .2);
+    color: #a5b4fc;
 }
 
 .card-arrow {
-    width:28px; height:28px;
-    background:rgba(255,255,255,.07);
-    border-radius:50%;
-    display:flex; align-items:center; justify-content:center;
-    color:rgba(255,255,255,.4);
-    font-size:13px;
-    transition:all .3s;
+    width: 28px;
+    height: 28px;
+    background: rgba(255, 255, 255, .07);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, .4);
+    font-size: 13px;
+    transition: all .3s;
 }
+
 .tour-card:hover .card-arrow {
-    background:rgba(165,180,252,.2);
-    color:#a5b4fc;
-    transform:translateX(3px);
+    background: rgba(165, 180, 252, .2);
+    color: #a5b4fc;
+    transform: translateX(3px);
 }
-.tour-card.featured .card-arrow { background:rgba(99,102,241,.25); color:#a5b4fc; }
+
+.tour-card.featured .card-arrow {
+    background: rgba(99, 102, 241, .25);
+    color: #a5b4fc;
+}
 
 .back-link-btn {
     grid-column: 1 / -1;
     background: transparent;
     border: none;
-    color: rgba(255,255,255,.6);
+    color: rgba(255, 255, 255, .6);
     font-size: 13px;
     font-weight: 500;
     text-align: left;
@@ -257,18 +331,26 @@ html, body, #viewer {
     transition: color 0.2s;
     font-family: 'Inter', sans-serif;
 }
+
 .back-link-btn:hover {
     color: #fff;
 }
+
 .back-link-btn .icon {
     font-size: 16px;
 }
+
 /* exit animation */
 #landing-screen.hiding {
     animation: landingOut .4s ease forwards;
-    pointer-events:none;
+    pointer-events: none;
 }
-@keyframes landingOut { to { opacity:0; } }
+
+@keyframes landingOut {
+    to {
+        opacity: 0;
+    }
+}
 
 /* ── BACK TO MENU BUTTON ────────────────────────── */
 #back-to-menu-btn {
@@ -281,26 +363,27 @@ html, body, #viewer {
     align-items: center;
     gap: 7px;
     padding: 9px 20px;
-    background: rgba(6,10,23,.88);
+    background: rgba(6, 10, 23, .88);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(165,180,252,.2);
+    border: 1px solid rgba(165, 180, 252, .2);
     border-radius: 50px;
-    color: rgba(255,255,255,.75);
+    color: rgba(255, 255, 255, .75);
     font-family: 'Inter', sans-serif;
     font-size: 12.5px;
     font-weight: 500;
     cursor: pointer;
     transition: all .3s;
     white-space: nowrap;
-    box-shadow: 0 4px 20px rgba(0,0,0,.35);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, .35);
 }
+
 #back-to-menu-btn:hover {
-    background: rgba(99,102,241,.28);
-    border-color: rgba(165,180,252,.45);
+    background: rgba(99, 102, 241, .28);
+    border-color: rgba(165, 180, 252, .45);
     color: #fff;
     transform: translateX(-50%) translateY(-2px);
-    box-shadow: 0 8px 28px rgba(99,102,241,.2);
+    box-shadow: 0 8px 28px rgba(99, 102, 241, .2);
 }
 
 /* ── SCENES LIST (dark theme override) ─────────── */
@@ -308,9 +391,9 @@ html, body, #viewer {
     position: fixed;
     top: 16px;
     right: 20px;
-    background: rgba(6,10,23,.88) !important;
+    background: rgba(6, 10, 23, .88) !important;
     backdrop-filter: blur(20px);
-    border: 1px solid rgba(165,180,252,.2) !important;
+    border: 1px solid rgba(165, 180, 252, .2) !important;
     border-radius: 50% !important;
     width: 40px !important;
     height: 40px !important;
@@ -319,35 +402,173 @@ html, body, #viewer {
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 20px rgba(0,0,0,.35);
-    color: rgba(255,255,255,.7);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, .35);
+    color: rgba(255, 255, 255, .7);
 }
+
 .scenes-list {
     position: fixed;
     top: 64px;
     right: 20px;
-    background: rgba(6,10,23,.92) !important;
+    background: rgba(6, 10, 23, .92) !important;
     backdrop-filter: blur(20px);
-    border: 1px solid rgba(165,180,252,.15);
+    border: 1px solid rgba(165, 180, 252, .15);
     border-radius: 14px !important;
     padding: 12px !important;
     max-width: 220px;
     max-height: 75vh;
     overflow-y: auto;
     z-index: 1000;
-    box-shadow: 0 16px 48px rgba(0,0,0,.5);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, .5);
     display: none;
 }
-.scenes-list.show { display: block; }
+
+.scenes-list.show {
+    display: block;
+}
+
 .scene-item {
     padding: 9px 14px !important;
     margin: 3px 0 !important;
     border-radius: 8px !important;
     cursor: pointer;
-    color: rgba(255,255,255,.65);
-    font-family:'Inter',sans-serif;
-    font-size:13px;
+    color: rgba(255, 255, 255, .65);
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
     transition: background .2s;
 }
-.scene-item:hover { background: rgba(165,180,252,.12) !important; color:#fff; }
-.scene-item.active { background: rgba(99,102,241,.25) !important; color:#a5b4fc; font-weight:600; }
+
+.scene-item:hover {
+    background: rgba(165, 180, 252, .12) !important;
+    color: #fff;
+}
+
+.scene-item.active {
+    background: rgba(99, 102, 241, .25) !important;
+    color: #a5b4fc;
+    font-weight: 600;
+}
+
+/* ── NAVBAR (glassmorphism override) ─────────── */
+.psv-navbar {
+    background: rgba(10, 15, 30, 0.35) !important;
+    backdrop-filter: blur(24px) !important;
+    -webkit-backdrop-filter: blur(24px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 100px !important;
+    /* Pill shape */
+    padding: 0 24px !important;
+    height: 70px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 auto !important;
+
+    /* Make it floating */
+    position: absolute !important;
+    bottom: 20px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: max-content !important;
+    min-width: 300px !important;
+    max-width: 90% !important;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+}
+
+/* PSV adds an empty spacer flex element, let's hide it so everything centers */
+.psv-caption {
+    flex: 0 1 auto !important;
+    margin: 0 20px !important;
+}
+
+.psv-button {
+    border-radius: 50% !important;
+    /* circular buttons */
+    margin: 0 8px !important;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    width: 46px !important;
+    height: 46px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border: 1px solid transparent !important;
+}
+
+.psv-button:hover {
+    background: rgba(255, 255, 255, 0.15) !important;
+    transform: translateY(-4px) scale(1.05) !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3) !important;
+}
+
+.psv-button svg {
+    fill: rgba(255, 255, 255, 0.8) !important;
+    transition: fill 0.3s ease !important;
+    width: 20px !important;
+    height: 20px !important;
+}
+
+.psv-button:hover svg {
+    fill: #ffffff !important;
+}
+
+/* Specific styling for the caption to blend in nicely */
+.psv-caption-content {
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 600 !important;
+    color: rgba(255, 255, 255, 0.95) !important;
+    font-size: 15px !important;
+    letter-spacing: 0.5px !important;
+    text-align: center !important;
+}
+
+/* Hide any injected menu or gallery buttons from the navbar */
+.psv-navbar .psv-button[class*="menu"],
+.psv-navbar .psv-button--menu,
+.psv-navbar .psv-custom-menu-button {
+    display: none !important;
+}
+
+/* ── CREATOR BADGE ─────────── */
+.creator-badge {
+    position: fixed !important;
+    top: 24px;
+    right: 24px;
+    background: rgba(10, 15, 30, 0.35);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 10px 20px;
+    border-radius: 100px;
+    z-index: 9999;
+    /* Ensure it stays above everything */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    text-decoration: none;
+    display: inline-block;
+}
+
+.creator-badge:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(3px) scale(1.02);
+    /* Since it's at the top, pop it 'down' and grow */
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.creator-text {
+    font-family: 'Inter', sans-serif;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    margin: 0;
+}
+
+.creator-name {
+    color: #ffffff;
+    font-weight: 700;
+    font-family: 'Space Grotesk', sans-serif;
+    letter-spacing: 0.5px;
+}
