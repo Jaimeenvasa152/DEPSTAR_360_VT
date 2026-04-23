@@ -39,7 +39,7 @@ body,
 .landing-overlay {
     position: fixed;
     inset: 0;
-    background: url('img/DRONE.png') center/cover no-repeat;
+    background: url('img/DRONE.webp') center/cover no-repeat;
     z-index: -2;
 }
 

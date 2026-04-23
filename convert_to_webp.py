@@ -4,7 +4,7 @@ from PIL import Image
 
 def main():
     img_dir = "img"
-    jpg_files = glob.glob(os.path.join(img_dir, "*.jpg")) + glob.glob(os.path.join(img_dir, "*.jpeg"))
+    jpg_files = glob.glob(os.path.join(img_dir, "DRONE.png")) + glob.glob(os.path.join(img_dir, "*.jpeg"))
     
     print(f"Found {len(jpg_files)} JPEG images.")
     for file in jpg_files:
